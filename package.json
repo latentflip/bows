@@ -1,6 +1,6 @@
 {
   "name": "bows",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Rainbowed console logs for chrome in development",
   "main": "bows.js",
   "scripts": {
