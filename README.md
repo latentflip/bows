@@ -4,7 +4,7 @@
 - Optional colorizing on a module by module basis
 - Colors are automatically assigned and updated, to be as far from each other as possible
 
-![http://monosnap.com/image/B95kOBXY93TYV884xjCmFgJwo.png]() 
+![Example Output](http://monosnap.com/image/DjUMOcyjg8TP74kk608Dddhzg.png)
 
 ## Usage
 - Works great in browserify
@@ -62,7 +62,7 @@ moreModule(5);
 
 Result:
 
-![Example output](http://monosnap.com/image/B95kOBXY93TYV884xjCmFgJwo.png)
+![Example output](http://monosnap.com/image/DjUMOcyjg8TP74kk608Dddhzg.png)
 
 ## License
 
