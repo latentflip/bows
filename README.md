@@ -62,7 +62,7 @@ moreModule(5);
 
 Result:
 
-![Example output](http://monosnap.com/image/DjUMOcyjg8TP74kk608Dddhzg.png)
+![Example Output](http://monosnap.com/image/DjUMOcyjg8TP74kk608Dddhzg.png)
 
 ## License
 
