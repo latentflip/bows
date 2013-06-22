@@ -6,8 +6,12 @@
   "scripts": {
     "test": "node test.js"
   },
+  "dependencies": {
+    "andlog": ""
+  },
   "devDependencies": {
-    "coffee-script": ""
+    "browserify": "",
+    "coffeeify": ""
   },
   "repository": "",
   "author": "Philip Roberts",

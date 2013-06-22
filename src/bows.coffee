@@ -1,3 +1,5 @@
+logger = require('andlog')
+
 nColors = (n) ->
   i = 360 / (n)
   r = []
@@ -27,10 +29,19 @@ updateArray = (fullkey, padlength) ->
   prefixes[fullkey][0] = msg
   prefixes[fullkey][1] = "color: hsl(#{colors[id]},50%,50%); font-weight: bold"
 
-module.exports = (str) ->
+bows = (str) ->
   numKeys += 1
   fullkey = "#{str}-#{id}"
   prefixes[fullkey] = ['','']
   updateArrays()
   id++
-  return prefixes[fullkey]
+  (args...) ->
+    prefixes[fullkey].concat(args)
+
+bows.log = logger.log.apply.bind(logger.log, logger)
+
+if typeof module != 'undefined'
+  module.exports = bows
+else
+  window.bows = bows
+
