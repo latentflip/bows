@@ -1,1 +1,1 @@
-./node_modules/coffee-script/bin/coffee -c src/bows.coffee > bows.js
+./node_modules/coffee-script/bin/coffee -c -o ./ src/bows.coffee

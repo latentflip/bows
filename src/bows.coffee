@@ -1,5 +1,3 @@
-#_ = require 'underscore'
-
 nColors = (n) ->
   i = 360 / (n)
   r = []
