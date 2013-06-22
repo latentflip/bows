@@ -10,12 +10,11 @@ id = 0
 
 numKeys = 0
 prefixes = {}
-window.prefixes = prefixes
 
 updateArrays = ->
   colors = nColors(numKeys)
-  lengths = Object.keys(prefixes).map( (p) -> p.length ).max()
-  maxLength = Array.prototype.max.apply(lengths)
+  lengths = Object.keys(prefixes).map( (p) -> p.length )
+  maxLength = Math.max.apply({}, lengths)
   updateArray(key, maxLength) for key,array of prefixes
 
 updateArray = (fullkey, padlength) ->

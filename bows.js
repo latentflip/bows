@@ -20,15 +20,13 @@
 
   prefixes = {};
 
-  window.prefixes = prefixes;
-
   updateArrays = function() {
     var array, key, lengths, maxLength, _results;
     colors = nColors(numKeys);
     lengths = Object.keys(prefixes).map(function(p) {
       return p.length;
-    }).max();
-    maxLength = Array.prototype.max.apply(lengths);
+    });
+    maxLength = Math.max.apply({}, lengths);
     _results = [];
     for (key in prefixes) {
       array = prefixes[key];
