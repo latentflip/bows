@@ -41,5 +41,7 @@ assert.equal(barPrefix[1], 'color: hsl(120,50%,50%); font-weight: bold', 'Bar co
 assert.equal(fooPrefix[0], '%cFoo   |', 'Foo prefix length updated');
 assert.equal(fooPrefix[1], 'color: hsl(0,50%,50%); font-weight: bold', 'Foo color not updated');
 
+bows.color = false;
+assert.equal(foo('a log string')[0], 'a log string', 'disable logging');
 
 console.log('All tests pass');

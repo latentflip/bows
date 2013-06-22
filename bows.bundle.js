@@ -57,9 +57,15 @@ bows = function(str) {
   return function() {
     var args;
     args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
-    return prefixes[fullkey].concat(args);
+    if (bows.color) {
+      return prefixes[fullkey].concat(args);
+    } else {
+      return args;
+    }
   };
 };
+
+bows.color = true;
 
 bows.log = logger.log.apply.bind(logger.log, logger);
 

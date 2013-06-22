@@ -1,13 +1,35 @@
 <script src='bows.bundle.js'></script>
 
 <script>
-  var prefix1 = bows('Module 1');
-  var prefix2 = bows('Another module');
-  var prefix3 = bows('Mo modules');
+  var firstModule = (function() {
+    var logwrap = bows('firstModule');
 
+    return function() {
+      var a = 1 + 1;
+      bows.log(logwrap('The result is', a))
+      return a
+    }
+  })();
 
-  bows.log(prefix1('1'))
-  bows.log(prefix2('1'))
-  bows.log(prefix3('1'))
-  bows.log(prefix1('1'))
+  var anotherModule = (function() {
+    var logwrap = bows('this is another module');
+
+    return function() {
+      var b = 1 + 1;
+      bows.log(logwrap('The result is', b));
+      return b;
+    }
+  })();
+
+  var moreModule = (function() {
+    var logwrap = bows('this is another module');
+
+    return function(val) {
+      bows.log(logwrap('I got a ', val));
+    }
+  })();
+
+  firstModule();
+  anotherModule();
+  moreModule(5);
 </script>

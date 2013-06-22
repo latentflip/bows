@@ -36,8 +36,12 @@ bows = (str) ->
   updateArrays()
   id++
   (args...) ->
-    prefixes[fullkey].concat(args)
+    if bows.color
+      prefixes[fullkey].concat(args)
+    else
+      args
 
+bows.color = true
 bows.log = logger.log.apply.bind(logger.log, logger)
 
 if typeof module != 'undefined'
