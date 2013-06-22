@@ -35,11 +35,16 @@ bows = (str) ->
   prefixes[fullkey] = ['','']
   updateArrays()
   id++
-  (args...) ->
-    if bows.color
-      prefixes[fullkey].concat(args)
-    else
-      args
+
+  log = logger.log.apply.bind(logger.log, logger)
+  log.wrap = (args...) ->
+      if bows.color
+        prefixes[fullkey].concat(args)
+      else
+        args
+
+  log.w = log.wrap
+  return log
 
 bows.color = true
 bows.log = logger.log.apply.bind(logger.log, logger)

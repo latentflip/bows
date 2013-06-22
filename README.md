@@ -4,15 +4,24 @@
 - Optional colorizing on a module by module basis
 - Colors are automatically assigned and updated, to be as far from each other as possible
 
+![Example output](http://monosnap.com/image/B95kOBXY93TYV884xjCmFgJwo.png)
+
 ## Usage
 - Works great in browserify
 
+### Browserify
 ```javascript
 //In mymodule.js
-var wrap = bows('MyModule');
+var log = require('bows')('MyModule');
 ...
 
-bows.log(wrap('My log string')) //=> colorized "MyModule | My log string"
+log(log.wrap('My log string')) //=> colorized "MyModule | My log string"
+
+
+/In another module.js
+var log = require('bows')('Another Module');
+
+log(log.wrap('My log')) //=> colorized "Another Module | My log"
 ```
 
 ## Example

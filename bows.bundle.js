@@ -48,13 +48,14 @@ updateArray = function(fullkey, padlength) {
 };
 
 bows = function(str) {
-  var fullkey;
+  var fullkey, log;
   numKeys += 1;
   fullkey = "" + str + "-" + id;
   prefixes[fullkey] = ['', ''];
   updateArrays();
   id++;
-  return function() {
+  log = logger.log.apply.bind(logger.log, logger);
+  log.wrap = function() {
     var args;
     args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
     if (bows.color) {
@@ -63,6 +64,8 @@ bows = function(str) {
       return args;
     }
   };
+  log.w = log.wrap;
+  return log;
 };
 
 bows.color = true;
