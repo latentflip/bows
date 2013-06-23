@@ -1,7 +1,7 @@
 # Bows
-## Safe, production happy, colourful logging for chrome - makes reading your logs _much_ easier.
-
 ![Example Output](https://raw.github.com/latentflip/bows/master/example/cols.png)
+Safe, production happy, colourful logging for chrome - makes reading your logs _much_ easier.
+
 
 (Rain)bows makes logging debug messages in your apps much nicer.
 - It allows you to create custom loggers for each module in your app, that prefix all log messages with the name of the app, so that you can scan the messages more easily.
