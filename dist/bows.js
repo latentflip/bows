@@ -1,11 +1,10 @@
 (function(e){if("function"==typeof bootstrap)bootstrap("bows",e);else if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else if("undefined"!=typeof ses){if(!ses.ok())return;ses.makeBows=e}else"undefined"!=typeof window?window.bows=e():global.bows=e()})(function(){var define,ses,bootstrap,module,exports;
 return (function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof require=="function"&&require;if(!s&&o)return o(n,!0);if(r)return r(n,!0);throw new Error("Cannot find module '"+n+"'")}var u=t[n]={exports:{}};e[n][0].call(u.exports,function(t){var r=e[n][1][t];return i(r?r:t)},u,u.exports)}return t[n].exports}var r=typeof require=="function"&&require;for(var s=0;s<n.length;s++)i(n[s]);return i})({1:[function(require,module,exports){
-(function() {
+(function(window) {
   var logger = require('andlog'),
       goldenRatio = 0.618033988749895,
       hue = 0,
       padLength = 15,
-      ls = localStorage,
       yieldColor,
       bows;
 
@@ -16,8 +15,6 @@ return (function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof require
   };
 
   bows = function(str) {
-    if (!ls && !ls.debug) { return logger.log };
-
     var msg;
     msg = "%c" + (str.slice(0, padLength));
     msg += Array(padLength + 3 - msg.length).join(' ') + '|';

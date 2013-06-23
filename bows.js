@@ -1,9 +1,8 @@
-(function() {
+(function(window) {
   var logger = require('andlog'),
       goldenRatio = 0.618033988749895,
       hue = 0,
       padLength = 15,
-      ls = localStorage,
       yieldColor,
       bows;
 
@@ -14,8 +13,6 @@
   };
 
   bows = function(str) {
-    if (!ls && !ls.debug) { return logger.log };
-
     var msg;
     msg = "%c" + (str.slice(0, padLength));
     msg += Array(padLength + 3 - msg.length).join(' ') + '|';
