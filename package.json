@@ -13,7 +13,24 @@
     "browserify": "",
     "uglify-js": "~2.3.6"
   },
-  "repository": "http://",
   "author": "Philip Roberts",
-  "license": "MIT"
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "bd7b0c00f47771a342ddc098cdc7e5ee5b4a53b3",
+  "directories": {
+    "example": "example"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/latentflip/bows.git"
+  },
+  "keywords": [
+    "color",
+    "logging",
+    "chrome",
+    "console"
+  ],
+  "bugs": {
+    "url": "https://github.com/latentflip/bows/issues"
+  }
 }
