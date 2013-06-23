@@ -11,10 +11,9 @@
   },
   "devDependencies": {
     "browserify": "",
-    "coffeeify": "",
-    "coffee-script": ""
+    "coffeeify": ""
   },
-  "repository": "",
+  "repository": "http://",
   "author": "Philip Roberts",
   "license": "MIT"
 }

@@ -11,8 +11,9 @@ return (function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof require
   yieldColor = function() {
     hue += goldenRatio;
     hue = hue % 1;
-    return h * 360;
+    return hue * 360;
   };
+  window.yieldColor = yieldColor;
 
   padLength = 10;
 

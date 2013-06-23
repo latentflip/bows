@@ -9,8 +9,9 @@
   yieldColor = function() {
     hue += goldenRatio;
     hue = hue % 1;
-    return h * 360;
+    return hue * 360;
   };
+  window.yieldColor = yieldColor;
 
   padLength = 10;
 

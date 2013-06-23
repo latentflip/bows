@@ -1,13 +1,25 @@
-<script src='bows.bundle.js'></script>
 <script>
-  bows.config({ padLength: 10 })
+  //This must be set to see before bows is loaded to see debug output
+  //Simplest is to set it in the console once and refresh the page
+  localStorage.debug = true
+
+  //To disable again: 
+  //delete localStorage.debug
 </script>
 
+<!-- Require bows -->
+<script src='../bows.bundle.js'></script>
+
 <script>
+  //Configure bows (optional)
+  bows.config({ padLength: 10 })
+
+  //Create your loggers for each module
   var logger1 = bows('Module 1')
   var logger2 = bows('Module 2')
   var logger3 = bows('Module 3')
 
+  //Use your loggers
   logger1("We started up")
   logger2("We did something too")
   logger3("I'm here")
@@ -15,3 +27,10 @@
   logger2("I'm tired")
   logger1("We're done here")
 </script>
+
+
+<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+<div style='text-align: center'>
+  <h1>Psst.</h1>
+  <h2>View the source/Open the console.</h2>
+</div>
