@@ -59,8 +59,9 @@ Result:
 
 ## License
 
-Copyright Philip Roberts (latentflip.com)[http://latentflip.com]
 MIT
+
+Copyright Philip Roberts [latentflip.com](http://latentflip.com)
 
 
 ## Contributing
