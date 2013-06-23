@@ -4,65 +4,33 @@
 - Optional colorizing on a module by module basis
 - Colors are automatically assigned and updated, to be as far from each other as possible
 
-![Example Output](http://monosnap.com/image/DjUMOcyjg8TP74kk608Dddhzg.png)
+![Example Output](https://raw.github.com/latentflip/bows/master/example/example.png)
 
 ## Usage
-- Works great in browserify
-
-### Browserify
-```javascript
-//In mymodule.js
-var log = require('bows')('MyModule');
-...
-
-log(log.wrap('My log string')) //=> colorized "MyModule | My log string"
-
-
-/In another module.js
-var log = require('bows')('Another Module');
-
-log(log.wrap('My log')) //=> colorized "Another Module | My log"
-```
+- Works great in browserify and the browser
+- To enable logging, set `localStorage.debug = true`
 
 ## Example
 
 ```javascript
-var firstModule = (function() {
-  var logwrap = bows('firstModule');
+  localStorage.debug = true
+  bows.config({ padLength: 10 })
 
-  return function() {
-    var a = 1 + 1;
-    bows.log(logwrap('The result is', a))
-    return a
-  }
-})();
+  var logger1 = bows('Module 1')
+  var logger2 = bows('Module 2')
+  var logger3 = bows('Module 3')
 
-var anotherModule = (function() {
-  var logwrap = bows('this is another module');
-
-  return function() {
-    var b = 1 + 1;
-    bows.log(logwrap('The result is', b));
-    return b;
-  }
-})();
-
-var moreModule = (function() {
-  var logwrap = bows('this is another module');
-
-  return function(val) {
-    bows.log(logwrap('I got a ', val));
-  }
-})();
-
-firstModule();
-anotherModule();
-moreModule(5);
+  logger1("We started up")
+  logger2("We did something too")
+  logger3("I'm here")
+  logger3("I'm still here")
+  logger2("I'm tired")
+  logger1("We're done here")
 ```
 
 Result:
 
-![Example Output](http://monosnap.com/image/DjUMOcyjg8TP74kk608Dddhzg.png)
+![Example Output](https://raw.github.com/latentflip/bows/master/example/example.png)
 
 ## License
 

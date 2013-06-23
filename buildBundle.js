@@ -3,8 +3,7 @@ var b = require('browserify')(),
     coffeeify = require('coffeeify');
 
 
-b.add('./src/bows.coffee');
-b.transform(coffeeify);
+b.add('./bows.js');
 b.bundle({standalone: 'bows'}, function (err, code) {
     fs.writeFileSync('bows.bundle.js', code);
 });
