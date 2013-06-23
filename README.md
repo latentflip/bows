@@ -1,5 +1,5 @@
 # Bows
-![Example Output](https://raw.github.com/latentflip/bows/master/example/cols.png)
+![Colors](https://raw.github.com/latentflip/bows/master/example/cols.png)
 Safe, production happy, colourful logging for chrome - makes reading your logs _much_ easier.
 
 
@@ -9,7 +9,7 @@ Safe, production happy, colourful logging for chrome - makes reading your logs _
 - It can be safely used in production, where logging will be disabled by default, so that you can leave log messages in your code.
 - Loggers safely wrap console.log, to maintain the line number from where they are called in the console output.
 
-![Example Output](https://raw.github.com/latentflip/bows/master/example/example.png)
+![Example Output](https://raw.github.com/latentflip/bows/master/example/realexample.png)
 
 ## Installation.
 
