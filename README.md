@@ -19,7 +19,7 @@ If you are using browserify, you'll want something like:
 npm install bows --save
 ```
 
-If you aren't using browserify, download either [bows.js](https://raw.github.com/latentflip/bows/master/bows.js) or [bows.min.js](https://raw.github.com/latentflip/bows/master/bows.min.js).
+If you aren't using browserify, download either [bows.js](https://raw.github.com/latentflip/bows/master/dist/bows.js) or [bows.min.js](https://raw.github.com/latentflip/bows/master/dist/bows.min.js).
 
 ## Usage
 - Works great in browserify and the browser.
