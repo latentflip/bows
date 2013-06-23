@@ -1,19 +1,16 @@
 (function() {
-  var bows, goldenRatio, hue, logger, padLength, yieldColor;
-
-  logger = require('andlog');
-
-  goldenRatio = 0.618033988749895;
-  hue = 0;
+  var logger = require('andlog'),
+      goldenRatio = 0.618033988749895,
+      hue = 0,
+      padLength = 15,
+      yieldColor,
+      bows;
 
   yieldColor = function() {
     hue += goldenRatio;
     hue = hue % 1;
     return hue * 360;
   };
-  window.yieldColor = yieldColor;
-
-  padLength = 10;
 
   bows = function(str) {
     var msg;
