@@ -11,7 +11,8 @@
   },
   "devDependencies": {
     "browserify": "",
-    "coffeeify": ""
+    "coffeeify": "",
+    "uglify-js": "~2.3.6"
   },
   "repository": "http://",
   "author": "Philip Roberts",
