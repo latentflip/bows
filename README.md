@@ -57,11 +57,13 @@ Result:
 
 ![Example Output](https://raw.github.com/latentflip/bows/master/example/example.png)
 
-## License
+## License & Credits
 
 MIT
 
-Copyright Philip Roberts [latentflip.com](http://latentflip.com)
+Copyright [@Philip\_Roberts](http://twitter.com/philip\_roberts) [latentflip.com](http://latentflip.com).
+
+Bows depends on [andlog](http://github.com/henrikjoreteg/andlog), a nice little logging module by [@HenrikJoreteg](https://twitter.com/henrikjoreteg).
 
 
 ## Contributing
