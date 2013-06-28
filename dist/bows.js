@@ -36,15 +36,11 @@ return (function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof require
 }).call(this);
 
 },{"andlog":2}],2:[function(require,module,exports){
-(function(global){// follow @HenrikJoreteg and @andyet if you like this ;)
-(function (window) {
-    var ls = window.localStorage,
-        out = {},
-        inNode = (
-          typeof global !== 'undefined' &&
-          (global !== window) &&
-          typeof window.global === 'undefined'
-        )
+// follow @HenrikJoreteg and @andyet if you like this ;)
+(function () {
+    var inNode = typeof window === 'undefined',
+        ls = !inNode && window.localStorage,
+        out = {};
 
     if (inNode) {
         module.exports = console;
@@ -57,7 +53,7 @@ return (function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof require
         var methods = "assert,count,debug,dir,dirxml,error,exception,group,groupCollapsed,groupEnd,info,log,markTimeline,profile,profileEnd,time,timeEnd,trace,warn".split(","),
             l = methods.length,
             fn = function () {};
-        
+
         while (l--) {
             out[methods[l]] = fn;
         }
@@ -67,9 +63,8 @@ return (function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof require
     } else {
         window.console = out;
     }
-})(this);
+})();
 
-})(self)
 },{}]},{},[1])(1)
 });
 ;

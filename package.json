@@ -7,7 +7,7 @@
     "test": "node test.js"
   },
   "dependencies": {
-    "andlog": "git://github.com/latentflip/andlog#3-fix-browserify-support"
+    "andlog": ">=0.0.4"
   },
   "devDependencies": {
     "browserify": "",
