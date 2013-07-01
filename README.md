@@ -21,6 +21,14 @@ npm install bows --save
 
 If you aren't using browserify, download either [bows.js](https://raw.github.com/latentflip/bows/master/dist/bows.js) or [bows.min.js](https://raw.github.com/latentflip/bows/master/dist/bows.min.js).
 
+## Features
+
+* Easily create prefixes for your logs, so that you can distinguish between logs from different parts of your app easily.
+* In chrome prefixes will be color coded for even easier identification.
+* Can be safely used in production, as logs will be disabled for your users, but can be enabled by you with a local storage flag.
+* Greppable logs by setting `localStorage.debug = /Foo/` to only display logs for modules matching the regex to help you focus in development.
+
+
 ## Usage
 - Works great in browserify and the browser.
 - Creating a new logger:
