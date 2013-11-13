@@ -1,39 +1,64 @@
-(function(e){if("function"==typeof bootstrap)bootstrap("bows",e);else if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else if("undefined"!=typeof ses){if(!ses.ok())return;ses.makeBows=e}else"undefined"!=typeof window?window.bows=e():global.bows=e()})(function(){var define,ses,bootstrap,module,exports;
-return (function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof require=="function"&&require;if(!s&&o)return o(n,!0);if(r)return r(n,!0);throw new Error("Cannot find module '"+n+"'")}var u=t[n]={exports:{}};e[n][0].call(u.exports,function(t){var r=e[n][1][t];return i(r?r:t)},u,u.exports)}return t[n].exports}var r=typeof require=="function"&&require;for(var s=0;s<n.length;s++)i(n[s]);return i})({1:[function(require,module,exports){
+!function(e){"object"==typeof exports?module.exports=e():"function"==typeof define&&define.amd?define(e):"undefined"!=typeof window?window.bows=e():"undefined"!=typeof global?global.bows=e():"undefined"!=typeof self&&(self.bows=e())}(function(){var define,module,exports;
+return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function() {
+  function checkColorSupport() {
+    var chrome = !!window.chrome,
+        firefox = /firefox/i.test(navigator.userAgent),
+        firebug = firefox && !!window.console.exception;
+
+    return chrome || firebug;
+  }
+
   var inNode = typeof window === 'undefined',
       ls = !inNode && window.localStorage,
       debug = ls.debug,
       logger = require('andlog'),
-      goldenRatio = 0.618033988749895,
       hue = 0,
       padLength = 15,
       noop = function() {},
+      colorsSupported = ls.debugColors || checkColorSupport(),
       yieldColor,
       bows,
       debugRegex;
 
   yieldColor = function() {
+    var goldenRatio = 0.618033988749895;
     hue += goldenRatio;
     hue = hue % 1;
     return hue * 360;
   };
 
-  var debugRegex = debug && debug[0]==='/' && new RegExp(debug.substring(1,debug.length-1));
+  debugRegex = debug && debug[0]==='/' && new RegExp(debug.substring(1,debug.length-1));
 
   bows = function(str) {
-    var msg;
-    msg = "%c" + (str.slice(0, padLength));
+    var msg, colorString, logfn;
+    msg = (str.slice(0, padLength));
     msg += Array(padLength + 3 - msg.length).join(' ') + '|';
 
     if (debugRegex && !str.match(debugRegex)) return noop;
-    if (!window.chrome) return logger.log.bind(logger, msg);
-    return logger.log.bind(logger, msg, "color: hsl(" + (yieldColor()) + ",99%,40%); font-weight: bold");
+
+    if (colorsSupported) {
+      var color = yieldColor();
+      msg = "%c" + msg;
+      colorString = "color: hsl(" + (color) + ",99%,40%); font-weight: bold";
+
+      logfn = logger.log.bind(logger, msg, colorString);
+      ['log', 'debug', 'warn', 'error', 'info'].forEach(function (f) {
+        logfn[f] = logger[f].bind(logger, msg, colorString);
+      });
+    } else {
+      logfn = logger.log.bind(logger, msg);
+      ['log', 'debug', 'warn', 'error', 'info'].forEach(function (f) {
+        logfn[f] = logger[f].bind(logger, msg);
+      });
+    }
+
+    return logfn;
   };
 
   bows.config = function(config) {
     if (config.padLength) {
-      return padLength = config.padLength;
+      this.padLength = config.padLength;
     }
   };
 
@@ -74,6 +99,7 @@ return (function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof require
     }
 })();
 
-},{}]},{},[1])(1)
+},{}]},{},[1])
+(1)
 });
 ;

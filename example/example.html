@@ -11,6 +11,9 @@
 <script src='../dist/bows.js'></script>
 
 <script>
+  //Setup for this page only
+  var header = function (s) { console.log('--------' + s) };
+
   //Configure bows (optional)
   bows.config({ padLength: 10 })
 
@@ -20,12 +23,33 @@
   var logger3 = bows('Module 3')
 
   //Use your loggers
+  header("Default logging directly: logger()")
   logger1("We started up")
   logger2("We did something too")
   logger3("I'm here")
   logger3("I'm still here")
   logger2("I'm tired")
   logger1("We're done here")
+
+  header("Logging directly: logger.log()")
+  logger1.log("This is a log")
+  logger2.log("This is a log")
+  logger3.log("This is a log")
+
+  header("Warnings: logger.warn()")
+  logger1.warn("This is a warning")
+  logger2.warn("This is a warning")
+  logger3.warn("This is a warning")
+
+  header("Debug: logger.debug()")
+  logger1.debug("This is a debug")
+  logger2.debug("This is a debug")
+  logger3.debug("This is a debug")
+
+  header("Errors: logger.error()")
+  logger1.error("This is an error")
+  logger2.error("This is an error")
+  logger3.error("This is an error")
 </script>
 
 
