@@ -1,4 +1,4 @@
-# November 13, 2013
+## November 13, 2013 (v0.3)
 * Add support for log, debug, error, warn, info as methods on the logger: 
 
     ```
