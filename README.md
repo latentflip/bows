@@ -1,6 +1,6 @@
 # Bows
 ![Colors](https://raw.github.com/latentflip/bows/master/example/cols.png)
-Safe, production happy, colourful logging for chrome - makes reading your logs _much_ easier.
+Safe, production happy, colourful logging - makes reading your logs _much_ easier.
 
 
 (Rain)bows makes logging debug messages in your apps much nicer.
@@ -28,6 +28,10 @@ If you aren't using browserify, download either [bows.js](https://raw.github.com
 * Can be safely used in production, as logs will be disabled for your users, but can be enabled by you with a local storage flag.
 * Greppable logs by setting `localStorage.debug = /Foo/` to only display logs for modules matching the regex to help you focus in development.
 
+# Browser Support
+
+* Works in all reasonable browsers
+* Supports colors in chrome, opera, firefox >= 31.0
 
 ## Usage
 - Works great in browserify and the browser.

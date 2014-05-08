@@ -2,9 +2,15 @@
   function checkColorSupport() {
     var chrome = !!window.chrome,
         firefox = /firefox/i.test(navigator.userAgent),
-        firebug = firefox && !!window.console.exception;
+        firefoxVersion;
 
-    return chrome || firebug;
+    if (firefox) {
+        var match = navigator.userAgent.match(/Firefox\/(\d+\.\d+)/);
+        if (match && match[1] && Number(match[1])) {
+            firefoxVersion = Number(match[1]);
+        }
+    }
+    return chrome || firefoxVersion >= 31.0;
   }
 
   var inNode = typeof window === 'undefined',

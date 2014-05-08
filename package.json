@@ -4,7 +4,7 @@
   "description": "Rainbowed console logs for chrome in development",
   "main": "bows.js",
   "scripts": {
-    "test": "node test.js"
+    "build": "node build.js"
   },
   "dependencies": {
     "andlog": ">=0.0.4"
