@@ -69,6 +69,18 @@ Result:
 
 ![Example Output](https://raw.github.com/latentflip/bows/master/example/example.png)
 
+## Test
+
+This project uses `phantomjs` for tests. To run the tests install the development dependencies and then run:
+
+```bash
+npm test
+```
+
+### New tests
+
+Edit `test/index.html` to add new tests. Failing tests should include '__BAD:__' in the console message and passing tests should include '__OK:__'.  Each test should include the namespace of the logger being used. The final test should include '__END:__'.
+
 ## License & Credits
 
 MIT
