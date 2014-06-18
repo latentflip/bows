@@ -1,0 +1,22 @@
+<script type="text/javascript" src='./helpers/function.bind.js'></script>
+
+<script>delete localStorage.debug</script>
+
+<script src="../dist/bows.js"></script>
+
+<script type="text/javascript">
+  var mainLog, altLog  
+  
+  window.expectedLogs = [
+  ];
+
+  window.onload = function() {
+      mainLog = window.bows('mainLog')
+      mainLog('foo');
+      mainLog('bar');
+
+      altLog = window.bows('altLog')
+      altLog('baz');
+      altLog('buz');
+  }
+</script>
