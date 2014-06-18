@@ -35,13 +35,13 @@
     </script>
     <script src="../dist/bows.js"></script>
     <script type="text/javascript">
-    var testLog, altLog  
+    var mainLog, altLog  
     window.onload = function() {
         localStorage.debug = true
-        testLog = window.bows('testLog')
-        testLog('OK: Message 1')
+        mainLog = window.bows('mainLog')
+        mainLog('OK: Message 1: mainLog')
         altLog = window.bows('altLog')
-        altLog('OK: Message 2')
+        altLog('OK: Message 2: altLog')
 
         /**
          * Turn off logging 
@@ -60,7 +60,7 @@
         altLog.config({ debugKey: 'waffles' })
         altLog('OK: Yummy! Message 4')
         */
-        altLog('OK: END')
+        mainLog('OK: END: mainLog')
     }
     </script>
   </body>

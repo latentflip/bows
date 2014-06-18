@@ -4,7 +4,10 @@ var exit = 0
 page.onConsoleMessage = function(msg) {
     console.log(msg)
     if (-1 === msg.indexOf('OK:')) {
-        console.log('fail', msg)
+        exit = 1
+    }
+    if (2 !== msg.match(new RegExp(msg.match(/([^\ ]*Log)$/)[0], 'g')).length) {
+        console.log('Message came from unexpected logger')
         exit = 1
     }
     if (-1 !== msg.indexOf('END')) {
