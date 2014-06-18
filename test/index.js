@@ -2,7 +2,8 @@ var runTestPage = require('./helpers/runTestPage');
 
 var scripts = [
     'test/enabled.html',
-    'test/disabled.html'
+    'test/disabled.html',
+    'test/regex.html',
 ];
 
 function runNextScript () {
