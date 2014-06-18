@@ -13,29 +13,31 @@
     return chrome || firefoxVersion >= 31.0;
   }
 
-  var yieldColor = function() {
-    var goldenRatio = 0.618033988749895;
-    hue += goldenRatio;
-    hue = hue % 1;
-    return hue * 360;
-  };
-
-  var inNode = typeof window === 'undefined',
-      ls = !inNode && window.localStorage,
-      debug = ls.debug,
-      logger = require('andlog'),
-      hue = 0,
-      padLength = 15,
-      noop = function() {},
-      colorsSupported = ls.debugColors || checkColorSupport(),
-      bows = null,
-      debugRegex = null;
-
-  debugRegex = debug && debug[0]==='/' && new RegExp(debug.substring(1,debug.length-1));
-
   var logLevels = ['log', 'debug', 'warn', 'error', 'info'];
 
   bows = function(str) {
+
+    var inNode = typeof window === 'undefined',
+        ls = !inNode && window.localStorage,
+        debugKey = ls.andlogKey || 'debug',
+        debug = ls[debugKey],
+        logger = require('andlog'),
+        hue = 0,
+        padLength = 15,
+        noop = function() {},
+        colorsSupported = ls.debugColors || checkColorSupport(),
+        bows = null,
+        debugRegex = null;
+      
+    var yieldColor = function() {
+      var goldenRatio = 0.618033988749895;
+      hue += goldenRatio;
+      hue = hue % 1;
+      return hue * 360;
+    };
+      
+    debugRegex = debug && debug[0]==='/' && new RegExp(debug.substring(1,debug.length-1));
+
     var msg, colorString, logfn;
     msg = (str.slice(0, padLength));
     msg += Array(padLength + 3 - msg.length).join(' ') + '|';
