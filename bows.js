@@ -27,7 +27,7 @@
       hue = 0,
       padLength = 15,
       noop = function() {},
-      colorsSupported = false;//ls.debugColors || checkColorSupport(),
+      colorsSupported = ls.debugColors || checkColorSupport(),
       bows = null,
       debugRegex = null;
 
