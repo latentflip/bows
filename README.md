@@ -87,10 +87,10 @@ Add a file in `test`, refer to enabled.html/disabled.html, then add the script t
 
 MIT
 
-Copyright [@Philip\_Roberts](http://twitter.com/philip\_roberts) [latentflip.com](http://latentflip.com).
+Copyright [@philip\_roberts](http://twitter.com/philip\_roberts) / [latentflip.com](http://latentflip.com).
 
 With contributions from:
-* [@lloydWatkin](https://twitter.com/lloydwatkin).
+* [@lloydwatkin](https://twitter.com/lloydwatkin).
 
 Bows depends on [andlog](http://github.com/henrikjoreteg/andlog), a nice little logging module by [@HenrikJoreteg](https://twitter.com/henrikjoreteg).
 
@@ -104,6 +104,7 @@ git clone https://github.com/latentflip/bows.git
 cd bows
 npm install #install dependencies
 #edit bows.js
+npm test
 node build.js #build dist/bows.js and dist/bows.min.js
 ```
 
