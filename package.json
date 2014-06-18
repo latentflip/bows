@@ -12,8 +12,8 @@
   },
   "devDependencies": {
     "browserify": "",
-    "uglify-js": "~2.3.6",
-    "phantomjs": "^1.9.7-8"
+    "phantomjs": "^1.9.7-8",
+    "uglify-js": "~2.3.6"
   },
   "author": "Philip Roberts",
   "license": "MIT",

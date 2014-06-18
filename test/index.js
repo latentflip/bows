@@ -1,12 +1,26 @@
 var runTestPage = require('./helpers/runTestPage');
 
+var scripts = [
+    'test/enabled.html',
+    'test/disabled.html'
+];
 
-runTestPage('test/disabled.html', function (exitCode) {
-    if (exitCode > 0) {
-        return phantom.exit(exitCode);
+function runNextScript () {
+    var script = scripts.shift();
+
+    if (!script) {
+        console.log('All tests passed');
+        phantom.exit(0);
+        return;
     }
 
-    runTestPage('test/enabled.html', function (exitCode) {
-        phantom.exit(exitCode);
+    console.log('Running', script);
+    runTestPage(script, function (exitCode) {
+        if (exitCode > 0) {
+            return phantom.exit(exitCode);
+        }
+        runNextScript();
     });
-});
+}
+
+runNextScript();
