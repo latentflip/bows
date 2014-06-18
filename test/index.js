@@ -4,6 +4,7 @@ var scripts = [
     'test/enabled.html',
     'test/disabled.html',
     'test/regex.html',
+    'test/alternative-key.html'
 ];
 
 function runNextScript () {
