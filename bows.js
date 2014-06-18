@@ -35,12 +35,15 @@
       hue = hue % 1;
       return hue * 360;
     };
+      
+    debugRegex = debug && debug[0]==='/' && new RegExp(debug.substring(1,debug.length-1));
 
     var msg, colorString, logfn;
     msg = (str.slice(0, padLength));
     msg += Array(padLength + 3 - msg.length).join(' ') + '|';
 
-    if (!debug || (debugRegex && !str.match(debugRegex))) return noop;
+    if (!debug) return noop;
+    if (debugRegex && !str.match(debugRegex)) return noop;
 
     if (colorsSupported) {
       var color = yieldColor();
