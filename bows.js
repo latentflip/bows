@@ -42,7 +42,6 @@
     msg = (str.slice(0, padLength));
     msg += Array(padLength + 3 - msg.length).join(' ') + '|';
 
-    if (!debug) return noop;
     if (debugRegex && !str.match(debugRegex)) return noop;
 
     if (colorsSupported) {

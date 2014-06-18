@@ -1,6 +1,10 @@
 <script type="text/javascript" src='./helpers/function.bind.js'></script>
 
-<script>localStorage.debugKey = 'bacon'; localStorage.bacon = true;</script>
+<script>
+    localStorage.removeItem('debug');
+    localStorage.debugKey = 'bacon';
+    localStorage.bacon = true;
+</script>
 
 <script src="../dist/bows.js"></script>
 

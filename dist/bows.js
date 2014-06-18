@@ -43,7 +43,6 @@
     msg = (str.slice(0, padLength));
     msg += Array(padLength + 3 - msg.length).join(' ') + '|';
 
-    if (!debug) return noop;
     if (debugRegex && !str.match(debugRegex)) return noop;
 
     if (colorsSupported) {
@@ -93,7 +92,8 @@
         return;
     }
 
-    if (ls && ls.debug && window.console) {
+    var debugKey = ls.debugKey || 'debug'
+    if (ls && ls[debugKey] && window.console) {
         out = window.console;
     } else {
         var methods = "assert,count,debug,dir,dirxml,error,exception,group,groupCollapsed,groupEnd,info,log,markTimeline,profile,profileEnd,time,timeEnd,trace,warn".split(","),
