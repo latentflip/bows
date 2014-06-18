@@ -1,13 +1,13 @@
 var page = require('webpage').create()
 var exit = 0
-var maxMessage = 2
 
 page.onConsoleMessage = function(msg) {
     console.log(msg)
-    if (-1 !== msg.indexOf('OK:')) {
+    if (-1 === msg.indexOf('OK:')) {
+        console.log('fail', msg)
         exit = 1
     }
-    if (-1 !== msg.indexOf('Message ' + maxMessage) {
+    if (-1 !== msg.indexOf('END')) {
        phantom.exit(exit)  
     }
 }
@@ -16,4 +16,5 @@ page.open('test/test.html', function (status) {
         console.log('FAIL to load test file')
         phantom.exit(1)
     }
+    console.log('Page loaded...')
 })

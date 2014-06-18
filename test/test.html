@@ -8,32 +8,60 @@
     </style>
   </head>
   <body>
-    <pre id="log"></pre>
+    <script type="text/javascript">
+    /**
+     * Polyfill for phantomjs's lack of .bind()
+     */
+    if (!Function.prototype.bind) {
+      Function.prototype.bind = function (oThis) {
+        if (typeof this !== "function") {
+          // closest thing possible to the ECMAScript 5 internal IsCallable function
+          throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
+        }
+
+        var aArgs = Array.prototype.slice.call(arguments, 1), 
+            fToBind = this, 
+            fNOP = function () {},
+            fBound = function () {
+              return fToBind.apply(oThis, aArgs.concat(Array.prototype.slice.call(arguments)));
+            };
+
+        fNOP.prototype = this.prototype;
+        fBound.prototype = new fNOP();
+
+        return fBound;
+      };
+    }
+    </script>
     <script src="../dist/bows.js"></script>
     <script type="text/javascript">
-    localStorage.debug = true
-    var testLog = bows()
-    testLog('OK: Message 1')
-    var altLog = bows('altLog')
-    altLog('OK: Message 2')
-    
-    /**
-     * Turn off logging 
-     */
-    /**
-    localStorage.removeItem('debug')
-    console.log(altLog)
-    altLog.config({})
-    altLog('BAD: Message 3')
-    */
-    /**
-     * Change debug key
-     */
-    /**
-    localStorage.waffles = true
-    altLog.config({ debugKey: 'waffles' })
-    altLog('OK: Yummy! Message 4')
-    */
+    var testLog, altLog  
+    window.onload = function() {
+        localStorage.debug = true
+        testLog = window.bows('testLog')
+        testLog('OK: Message 1')
+        altLog = window.bows('altLog')
+        altLog('OK: Message 2')
+
+        /**
+         * Turn off logging 
+         */
+        /**
+        localStorage.removeItem('debug')
+        console.log(altLog)
+        altLog.config({})
+        altLog('BAD: Message 3')
+        */
+        /**
+         * Change debug key
+         */
+        /**
+        localStorage.waffles = true
+        altLog.config({ debugKey: 'waffles' })
+        altLog('OK: Yummy! Message 4')
+        */
+        altLog('OK: END')
+    }
     </script>
   </body>
 </html>

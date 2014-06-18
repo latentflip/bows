@@ -12,6 +12,13 @@
     }
     return chrome || firefoxVersion >= 31.0;
   }
+    
+  var yieldColor = function() {
+    var goldenRatio = 0.618033988749895;
+    hue += goldenRatio;
+    hue = hue % 1;
+    return hue * 360;
+  };
 
   var inNode = typeof window === 'undefined',
       ls = !inNode && window.localStorage,
@@ -20,20 +27,15 @@
       hue = 0,
       padLength = 15,
       noop = function() {},
-      colorsSupported = ls.debugColors || checkColorSupport(),
-      yieldColor,
-      bows,
-      debugRegex;
+      colorsSupported = false;//ls.debugColors || checkColorSupport(),
+      bows = null,
+      debugRegex = null;
 
-  yieldColor = function() {
-    var goldenRatio = 0.618033988749895;
-    hue += goldenRatio;
-    hue = hue % 1;
-    return hue * 360;
-  };
 
   debugRegex = debug && debug[0]==='/' && new RegExp(debug.substring(1,debug.length-1));
 
+  var logLevels = ['log', 'debug', 'warn', 'error', 'info']
+  
   bows = function(str) {
     var msg, colorString, logfn;
     msg = (str.slice(0, padLength));
@@ -47,12 +49,12 @@
       colorString = "color: hsl(" + (color) + ",99%,40%); font-weight: bold";
 
       logfn = logger.log.bind(logger, msg, colorString);
-      ['log', 'debug', 'warn', 'error', 'info'].forEach(function (f) {
+      logLevels.forEach(function (f) {
         logfn[f] = logger[f].bind(logger, msg, colorString);
       });
     } else {
       logfn = logger.log.bind(logger, msg);
-      ['log', 'debug', 'warn', 'error', 'info'].forEach(function (f) {
+      logLevels.forEach(function (f) {
         logfn[f] = logger[f].bind(logger, msg);
       });
     }
