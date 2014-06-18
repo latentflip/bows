@@ -71,6 +71,8 @@ Result:
 
 ## Test
 
+__Status:___ [![Build Status](https://travis-ci.org/latentflip/bows.svg?branch=master)](https://travis-ci.org/latentflip/bows)
+
 This project uses `phantomjs` for tests. To run the tests install the development dependencies and then run:
 
 ```bash
