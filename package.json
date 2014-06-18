@@ -1,6 +1,6 @@
 {
   "name": "bows",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Rainbowed console logs for chrome in development",
   "main": "bows.js",
   "scripts": {
@@ -12,8 +12,8 @@
   },
   "devDependencies": {
     "browserify": "",
-    "uglify-js": "~2.3.6",
-    "phantomjs": "^1.9.7-8"
+    "phantomjs": "^1.9.7-8",
+    "uglify-js": "~2.3.6"
   },
   "author": "Philip Roberts",
   "license": "MIT",

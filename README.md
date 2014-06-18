@@ -71,7 +71,7 @@ Result:
 
 ## Test
 
-__Status:___ [![Build Status](https://travis-ci.org/latentflip/bows.svg?branch=master)](https://travis-ci.org/latentflip/bows)
+__Status:__ [![Build Status](https://travis-ci.org/latentflip/bows.svg?branch=master)](https://travis-ci.org/latentflip/bows)
 
 This project uses `phantomjs` for tests. To run the tests install the development dependencies and then run:
 
@@ -81,13 +81,16 @@ npm test
 
 ### New tests
 
-Edit `test/index.html` to add new tests. Failing tests should include '__BAD:__' in the console message and passing tests should include '__OK:__'.  Each test should include the namespace of the logger being used. The final test should include '__END:__'.
+Add a file in `test`, refer to enabled.html/disabled.html, then add the script to the array in test/index.js.
 
 ## License & Credits
 
 MIT
 
-Copyright [@Philip\_Roberts](http://twitter.com/philip\_roberts) [latentflip.com](http://latentflip.com).
+Copyright [@philip\_roberts](http://twitter.com/philip\_roberts) / [latentflip.com](http://latentflip.com).
+
+With contributions from:
+* [@lloydwatkin](https://twitter.com/lloydwatkin).
 
 Bows depends on [andlog](http://github.com/henrikjoreteg/andlog), a nice little logging module by [@HenrikJoreteg](https://twitter.com/henrikjoreteg).
 
@@ -101,6 +104,7 @@ git clone https://github.com/latentflip/bows.git
 cd bows
 npm install #install dependencies
 #edit bows.js
+npm test
 node build.js #build dist/bows.js and dist/bows.min.js
 ```
 

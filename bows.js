@@ -12,7 +12,7 @@
     }
     return chrome || firefoxVersion >= 31.0;
   }
-    
+
   var yieldColor = function() {
     var goldenRatio = 0.618033988749895;
     hue += goldenRatio;
@@ -31,11 +31,10 @@
       bows = null,
       debugRegex = null;
 
-
   debugRegex = debug && debug[0]==='/' && new RegExp(debug.substring(1,debug.length-1));
 
-  var logLevels = ['log', 'debug', 'warn', 'error', 'info']
-  
+  var logLevels = ['log', 'debug', 'warn', 'error', 'info'];
+
   bows = function(str) {
     var msg, colorString, logfn;
     msg = (str.slice(0, padLength));

@@ -1,23 +1,27 @@
-var page = require('webpage').create()
-var exit = 0
+var runTestPage = require('./helpers/runTestPage');
 
-page.onConsoleMessage = function(msg) {
-    console.log(msg)
-    if (-1 === msg.indexOf('OK:')) {
-        exit = 1
+var scripts = [
+    'test/enabled.html',
+    'test/disabled.html',
+    'test/regex.html',
+];
+
+function runNextScript () {
+    var script = scripts.shift();
+
+    if (!script) {
+        console.log('All tests passed');
+        phantom.exit(0);
+        return;
     }
-    if (2 !== msg.match(new RegExp(msg.match(/([^\ ]*Log)$/)[0], 'g')).length) {
-        console.log('Message came from unexpected logger')
-        exit = 1
-    }
-    if (-1 !== msg.indexOf('END')) {
-       phantom.exit(exit)  
-    }
+
+    console.log('Running', script);
+    runTestPage(script, function (exitCode) {
+        if (exitCode > 0) {
+            return phantom.exit(exitCode);
+        }
+        runNextScript();
+    });
 }
-page.open('test/test.html', function (status) {
-    if (status !== 'success') {
-        console.log('FAIL to load test file')
-        phantom.exit(1)
-    }
-    console.log('Page loaded...')
-})
+
+runNextScript();
