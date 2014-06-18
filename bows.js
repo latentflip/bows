@@ -19,7 +19,7 @@
 
     var inNode = typeof window === 'undefined',
         ls = !inNode && window.localStorage,
-        debugKey = ls.debugKey || 'debug',
+        debugKey = ls.andlogKey || 'debug',
         debug = ls[debugKey],
         logger = require('andlog'),
         hue = 0,
@@ -66,9 +66,6 @@
   bows.config = function(config) {
     if (config.padLength) {
       this.padLength = config.padLength;
-    }
-    if (config.debugKey) {
-      this.debugKey = config.debugKey;
     }
   };
 
