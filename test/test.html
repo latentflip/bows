@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>bows tests</title>
+    <style>
+      body { background: #222; color: #00ff22 }
+      pre { margin: 0; padding: 0 }
+    </style>
+  </head>
+  <body>
+    <pre id="log"></pre>
+    <script src="../dist/bows.js"></script>
+    <script type="text/javascript">
+    localStorage.debug = true
+    var testLog = bows()
+    testLog('OK: Message 1')
+    var altLog = bows('altLog')
+    altLog('OK: Message 2')
+    
+    /**
+     * Turn off logging 
+     */
+    /**
+    localStorage.removeItem('debug')
+    console.log(altLog)
+    altLog.config({})
+    altLog('BAD: Message 3')
+    */
+    /**
+     * Change debug key
+     */
+    /**
+    localStorage.waffles = true
+    altLog.config({ debugKey: 'waffles' })
+    altLog('OK: Yummy! Message 4')
+    */
+    </script>
+  </body>
+</html>
