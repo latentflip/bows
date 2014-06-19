@@ -105,6 +105,6 @@ cd bows
 npm install #install dependencies
 #edit bows.js
 npm test
-node build.js #build dist/bows.js and dist/bows.min.js
+npm run build.js #build dist/bows.js and dist/bows.min.js, also done by `npm test`
 ```
 
