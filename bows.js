@@ -22,7 +22,8 @@
 
   var inNode = typeof window === 'undefined',
       ls = !inNode && window.localStorage,
-      debug = ls.debug,
+      debugKey = ls.andlogKey || 'debug',
+      debug = ls[debugKey],
       logger = require('andlog'),
       hue = 0,
       padLength = 15,
