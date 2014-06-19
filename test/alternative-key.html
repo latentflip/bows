@@ -1,7 +1,9 @@
 <script type="text/javascript" src='./helpers/function.bind.js'></script>
 
 <script>
-    localStorage.clear()
+    localStorage.removeItem('debug');
+    localStorage.andlogKey = 'bacon';
+    localStorage.bacon = true;
 </script>
 
 <script src="../dist/bows.js"></script>
@@ -10,6 +12,11 @@
   var mainLog, altLog  
   
   window.expectedLogs = [
+    'mainLog          | foo',
+    'mainLog          | bar',
+
+    'altLog           | baz',
+    'altLog           | buz'
   ];
 
   window.onload = function() {
@@ -22,3 +29,4 @@
       altLog('buz');
   }
 </script>
+

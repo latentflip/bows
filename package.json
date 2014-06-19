@@ -8,7 +8,7 @@
     "test": "node build.js && phantomjs test/index.js"
   },
   "dependencies": {
-    "andlog": ">=0.0.4"
+    "andlog": "^1.0.0"
   },
   "devDependencies": {
     "browserify": "",
