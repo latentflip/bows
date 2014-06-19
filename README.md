@@ -103,8 +103,8 @@ Please feel free to raise issues, or make contributions:
 git clone https://github.com/latentflip/bows.git
 cd bows
 npm install #install dependencies
-#edit bows.js
+
 npm test
-node build.js #build dist/bows.js and dist/bows.min.js
+npm build #build dist/bows.js and dist/bows.min.js, also done by `npm test`
 ```
 
