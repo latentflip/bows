@@ -22,8 +22,10 @@
 
   var inNode = typeof window === 'undefined',
       ls = !inNode && window.localStorage,
-      debug = ls.debug,
+      debugKey = ls.andlogKey || 'debug',
+      debug = ls[debugKey],
       logger = require('andlog'),
+      bind = Function.prototype.bind,
       hue = 0,
       padLength = 15,
       noop = function() {},
@@ -35,6 +37,11 @@
 
   var logLevels = ['log', 'debug', 'warn', 'error', 'info'];
 
+  //Noop should noop
+  for (var i = 0, ii = logLevels.length; i < ii; i++) {
+      noop[ logLevels[i] ] = noop;
+  }
+
   bows = function(str) {
     var msg, colorString, logfn;
     msg = (str.slice(0, padLength));
@@ -42,19 +49,22 @@
 
     if (debugRegex && !str.match(debugRegex)) return noop;
 
+    if (!bind) return noop;
+
     if (colorsSupported) {
       var color = yieldColor();
       msg = "%c" + msg;
       colorString = "color: hsl(" + (color) + ",99%,40%); font-weight: bold";
 
-      logfn = logger.log.bind(logger, msg, colorString);
+      logfn = bind.call(logger.log, logger, msg, colorString);
+
       logLevels.forEach(function (f) {
-        logfn[f] = logger[f].bind(logger, msg, colorString);
+        logfn[f] = bind.call(logger[f] || logfn, logger, msg, colorString);
       });
     } else {
-      logfn = logger.log.bind(logger, msg);
+      logfn = bind.call(logger.log, logger, msg);
       logLevels.forEach(function (f) {
-        logfn[f] = logger[f].bind(logger, msg);
+        logfn[f] = bind.call(logger[f] || logfn, logger, msg);
       });
     }
 

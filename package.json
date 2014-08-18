@@ -1,6 +1,6 @@
 {
   "name": "bows",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "description": "Rainbowed console logs for chrome in development",
   "main": "bows.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "test": "node build.js && phantomjs test/index.js"
   },
   "dependencies": {
-    "andlog": ">=0.0.4"
+    "andlog": "^1.0.0"
   },
   "devDependencies": {
     "browserify": "",
