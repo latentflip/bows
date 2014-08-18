@@ -30,7 +30,8 @@
       noop = function() {},
       colorsSupported = ls.debugColors || checkColorSupport(),
       bows = null,
-      debugRegex = null;
+      debugRegex = null,
+      moduleColorsMap = {};
 
   debugRegex = debug && debug[0]==='/' && new RegExp(debug.substring(1,debug.length-1));
 
@@ -44,7 +45,10 @@
     if (debugRegex && !str.match(debugRegex)) return noop;
 
     if (colorsSupported) {
-      var color = yieldColor();
+      if(!moduleColorsMap[str]){
+        moduleColorsMap[str]= yieldColor();
+      }
+      var color = moduleColorsMap[str];
       msg = "%c" + msg;
       colorString = "color: hsl(" + (color) + ",99%,40%); font-weight: bold";
 
