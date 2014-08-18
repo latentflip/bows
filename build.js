@@ -4,7 +4,7 @@ var browserify = require('browserify'),
 
 var b = browserify({ standalone: 'bows' });
 b.add('./bows.js');
-b.bundle(function (errorr, code) {
+b.bundle(function (error, code) {
     fs.writeFileSync('./dist/bows.js', code);
 
     //Uglify
