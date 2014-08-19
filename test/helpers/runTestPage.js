@@ -12,6 +12,29 @@ module.exports = function runTestPage(path, done) {
     page.onLoadFinished = function () {
         var exit = 0;
 
+        var customTests = page.evaluate(function () {
+            return !!window.customTests;
+        });
+
+        if (customTests) {
+            var customResults = page.evaluate(function (l) {
+                return window.customTests(l);
+            }, actualLogs);
+
+            customResults.forEach(function (result) {
+                if (!result[0]) {
+                    console.log('✖ ', result[1]);
+                    exit = 1;
+                } else {
+                    console.log('✔', result[1]);
+                }
+            });
+
+            done(exit);
+            return;
+        }
+
+
         var expectedLogs = page.evaluate(function () {
             return window.expectedLogs;
         });

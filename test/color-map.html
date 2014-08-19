@@ -1,0 +1,47 @@
+<script type="text/javascript" src='./helpers/function.bind.js'></script>
+
+<script>
+  localStorage.debug = true;
+  localStorage.debugColors = true;
+</script>
+
+<script src="../dist/bows.js"></script>
+
+<script>
+  var mainLog, mainLog2, altLog;
+
+  window.expectedLogs = [
+    'mainLog          | foo',
+    'mainLog          | bar',
+    'altLog           | baz',
+  ];
+
+
+  window.onload = function () {
+    //Okay this is gonna get weird, because my test runner is funky
+
+    mainLog = window.bows('mainLog');
+    mainLog2 = window.bows('mainLog');
+    altLog = window.bows('altLog');
+
+    mainLog('foo');
+    mainLog2('foo');
+    altLog('baz');
+  }
+
+  window.customTests = function (actualLogs) {
+    var results = [];
+
+    var getColor = function (log) {
+      return log.match(/hsl\([^)]+\)/)[0];
+    };
+
+    var colors = actualLogs.map(getColor);
+
+    results.push([ !!(colors[0] && colors[1] && colors[2]), "Loggers have colors" ]);
+    results.push([ colors[0] === colors[1], "Separate loggers with same module string have same color"]);
+    results.push([ colors[1] !== colors[2], "Separate loggers have different colors"]);
+
+    return results;
+  }
+</script>
