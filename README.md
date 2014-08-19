@@ -91,6 +91,7 @@ Copyright [@philip\_roberts](http://twitter.com/philip\_roberts) / [latentflip.c
 
 With contributions from:
 * [@lloydwatkin](https://twitter.com/lloydwatkin).
+* [@camillereynders](https://twitter.com/camillereynders).
 
 Bows depends on [andlog](http://github.com/henrikjoreteg/andlog), a nice little logging module by [@HenrikJoreteg](https://twitter.com/henrikjoreteg).
 
