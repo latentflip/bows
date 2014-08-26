@@ -6,6 +6,7 @@ var scripts = [
     'test/alternative-key.html',
     'test/regex.html',
     'test/color-map.html',
+    'test/padLength.html',
 ];
 
 function runNextScript () {

@@ -78,7 +78,7 @@
 
   bows.config = function(config) {
     if (config.padLength) {
-      this.padLength = config.padLength;
+      padLength = config.padLength;
     }
   };
 
