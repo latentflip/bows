@@ -42,6 +42,15 @@ If you aren't using browserify, download either [bows.js](https://raw.github.com
   - `log("Module loaded") //-> "My Module Name | Module Loaded"`
   - `log("Did something") //-> "My Module Name | Did something"`
 - Typically each seperate module/view/etc in your app would create it's own logger. It will be assigned it's own color to make it easy to spot logs from different modules.
+- You can pass additional arguments to `bows` which will be automatically prepended to each message, e.g.:
+
+    ```js
+    var log = bows("My App", "[ChuckNorris]");
+    log("Kicks ass!");
+    //outputs:
+    //My App         | [ChuckNorris] Kicks ass!
+    ```
+    
 - Logging is disabled by default. To enable logging, set `localStorage.debug = true` in your console and refresh the page.
 - You can leave the code in in production, and log() will just safely no-op unless localStorage.debug is set.
 

@@ -1,0 +1,30 @@
+<script type="text/javascript" src='./helpers/function.bind.js'></script>
+
+<script>
+  localStorage.debug = true;
+</script>
+
+<script src="../dist/bows.js"></script>
+
+<script>
+  var noargs, onearg, twoargs;
+
+  window.expectedLogs = [
+    'noargs           | foo',
+    'onearg           | I\'m the one! bar',
+    'twoargs          | I\'d rather be alone. - No chance, buster! baz',
+  ];
+
+
+  window.onload = function () {
+    //Okay this is gonna get weird, because my test runner is funky
+
+    noargs = window.bows('noargs');
+    onearg = window.bows('onearg', 'I\'m the one!');
+    twoargs = window.bows('twoargs', 'I\'d rather be alone.', '- No chance, buster!');
+
+    noargs('foo');
+    onearg('bar');
+    twoargs('baz');
+  };
+</script>

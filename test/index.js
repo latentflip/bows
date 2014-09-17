@@ -7,6 +7,7 @@ var scripts = [
     'test/regex.html',
     'test/color-map.html',
     'test/padLength.html',
+    'test/args.html'
 ];
 
 function runNextScript () {
