@@ -53,6 +53,7 @@
 
     if (!bind) return noop;
 
+    var logArgs = [logger];
     if (colorsSupported) {
       if(!moduleColorsMap[str]){
         moduleColorsMap[str]= yieldColor();
@@ -61,18 +62,21 @@
       msg = "%c" + msg;
       colorString = "color: hsl(" + (color) + ",99%,40%); font-weight: bold";
 
-      logfn = bind.call(logger.log, logger, msg, colorString);
-
-      logLevels.forEach(function (f) {
-        logfn[f] = bind.call(logger[f] || logfn, logger, msg, colorString);
-      });
-    } else {
-      logfn = bind.call(logger.log, logger, msg);
-      logLevels.forEach(function (f) {
-        logfn[f] = bind.call(logger[f] || logfn, logger, msg);
-      });
+      logArgs.push(msg, colorString);
+    }else{
+      logArgs.push(msg);
+    }
+      
+    if(arguments.length>1){
+        var args = Array.prototype.slice.call(arguments, 1);
+        logArgs = logArgs.concat(args);
     }
 
+    logfn = bind.apply(logger.log, logArgs);
+
+    logLevels.forEach(function (f) {
+      logfn[f] = bind.call(logger[f] || logfn, logArgs);
+    });
     return logfn;
   };
 

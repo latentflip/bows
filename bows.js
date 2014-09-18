@@ -52,7 +52,7 @@
 
     if (!bind) return noop;
 
-    var logArgs = [logger, msg];
+    var logArgs = [logger];
     if (colorsSupported) {
       if(!moduleColorsMap[str]){
         moduleColorsMap[str]= yieldColor();
@@ -61,7 +61,9 @@
       msg = "%c" + msg;
       colorString = "color: hsl(" + (color) + ",99%,40%); font-weight: bold";
 
-      logArgs.push(colorString);
+      logArgs.push(msg, colorString);
+    }else{
+      logArgs.push(msg);
     }
       
     if(arguments.length>1){
