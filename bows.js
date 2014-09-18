@@ -65,7 +65,7 @@
     }else{
       logArgs.push(msg);
     }
-      
+
     if(arguments.length>1){
         var args = Array.prototype.slice.call(arguments, 1);
         logArgs = logArgs.concat(args);
@@ -74,7 +74,7 @@
     logfn = bind.apply(logger.log, logArgs);
 
     logLevels.forEach(function (f) {
-      logfn[f] = bind.call(logger[f] || logfn, logArgs);
+      logfn[f] = bind.apply(logger[f] || logfn, logArgs);
     });
     return logfn;
   };

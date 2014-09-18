@@ -13,6 +13,7 @@
   window.expectedLogs = [
     'mainLog          | foo',
     'mainLog          | bar',
+    'mainLog          | bar',
 
     'altLog           | baz',
     'altLog           | buz'
@@ -22,6 +23,7 @@
       mainLog = window.bows('mainLog')
       mainLog('foo');
       mainLog('bar');
+      mainLog.log('bar');
 
       altLog = window.bows('altLog')
       altLog('baz');
