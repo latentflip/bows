@@ -11,7 +11,7 @@ Safe, production happy, colourful logging - makes reading your logs _much_ easie
 
 ![Example Output](https://raw.github.com/latentflip/bows/master/example/realexample.png)
 
-## Installation.
+## Installation
 
 If you are using browserify, you'll want something like:
 
@@ -19,7 +19,13 @@ If you are using browserify, you'll want something like:
 npm install bows --save
 ```
 
-If you aren't using browserify, download either [bows.js](https://raw.github.com/latentflip/bows/master/dist/bows.js) or [bows.min.js](https://raw.github.com/latentflip/bows/master/dist/bows.min.js).
+If you use Bower:
+
+```
+bower install bows --save
+```
+
+Otherwise, download either [bows.js](https://raw.github.com/latentflip/bows/master/dist/bows.js) or [bows.min.js](https://raw.github.com/latentflip/bows/master/dist/bows.min.js).
 
 ## Features
 
