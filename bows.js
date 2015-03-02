@@ -32,8 +32,13 @@
       colorsSupported = ls.debugColors || checkColorSupport(),
       bows = null,
       debugRegex = null,
+      invertRegex = false
       moduleColorsMap = {};
 
+  if (debug[0] === '!' && debug[0] === '/') {
+    invertRegex = true;
+    debug = debug.slice(1);
+  }
   debugRegex = debug && debug[0]==='/' && new RegExp(debug.substring(1,debug.length-1));
 
   var logLevels = ['log', 'debug', 'warn', 'error', 'info'];
@@ -48,7 +53,13 @@
     msg = (str.slice(0, padLength));
     msg += Array(padLength + 3 - msg.length).join(' ') + '|';
 
-    if (debugRegex && !str.match(debugRegex)) return noop;
+    if (debugRegex) {
+        var matches = str.match(debugRegex);
+        if (
+            (!invertRegex && !matches) ||
+            (invertRegex && matches)
+        ) return noop;
+    }
 
     if (!bind) return noop;
 

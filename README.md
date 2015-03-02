@@ -33,6 +33,7 @@ Otherwise, download either [bows.js](https://raw.github.com/latentflip/bows/mast
 * If supported, prefixes will be color coded for even easier identification.
 * Can be safely used in production, as logs will be disabled for your users, but can be enabled by you with a local storage flag.
 * Greppable logs by setting `localStorage.debug = /Foo/` to only display logs for modules matching the regex to help you focus in development.
+    * Invert regex to remove logs matching with: `localStorage.debug ='!/Foo/`
 
 # Browser Support
 
