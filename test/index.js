@@ -5,6 +5,7 @@ var scripts = [
     'test/disabled.html',
     'test/alternative-key.html',
     'test/regex.html',
+    'test/not-regex.html',
     'test/color-map.html',
     'test/padLength.html',
     'test/args.html'
