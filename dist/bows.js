@@ -36,7 +36,7 @@
       invertRegex = false
       moduleColorsMap = {};
 
-  if (debug[0] === '!' && debug[1] === '/') {
+  if (debug && debug[0] === '!' && debug[1] === '/') {
     invertRegex = true;
     debug = debug.slice(1);
   }
