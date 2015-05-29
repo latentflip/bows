@@ -6,10 +6,10 @@
   "scripts": {
     "build": "node build.js",
     "test": "node build.js && phantomjs test/index.js",
-    "pre-version": "git checkout master && git pull && npm ls",
-    "publish-patch": "npm version patch && git push origin master --tags && npm publish",
-    "publish-minor": "npm version minor && git push origin master --tags && npm publish",
-    "publish-major": "npm version major && git push origin master --tags && npm publish"
+    "preversion": "git checkout master && git pull && npm ls",
+    "publish-patch": "npm run preversion && npm version patch && git push origin master --tags && npm publish",
+    "publish-minor": "npm run preversion && npm version minor && git push origin master --tags && npm publish",
+    "publish-major": "npm run preversion && npm version major && git push origin master --tags && npm publish"
   },
   "dependencies": {
     "andlog": "^1.0.0"
