@@ -1,5 +1,8 @@
 (function() {
   function checkColorSupport() {
+    if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+      return false;
+    }
     var chrome = !!window.chrome,
         firefox = /firefox/i.test(navigator.userAgent),
         firefoxVersion;
@@ -32,7 +35,7 @@
       colorsSupported = ls.debugColors || checkColorSupport(),
       bows = null,
       debugRegex = null,
-      invertRegex = false
+      invertRegex = false,
       moduleColorsMap = {};
 
   if (debug && debug[0] === '!' && debug[1] === '/') {
