@@ -59,6 +59,7 @@ Otherwise, download either [bows.js](https://raw.github.com/latentflip/bows/mast
     ```
     
 - Logging is disabled by default. To enable logging, set `localStorage.debug = true` in your console and refresh the page.
+- To **disable** logging again, you must do `delete localStorage.debug` (`localStorage.debug = false` will not work).
 - You can leave the code in in production, and log() will just safely no-op unless localStorage.debug is set.
 
 ## Example
