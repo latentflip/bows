@@ -1,107 +1,125 @@
 (function() {
-  function checkColorSupport() {
-    if (typeof window === 'undefined' || typeof navigator === 'undefined') {
-      return false;
-    }
-    var chrome = !!window.chrome,
-        firefox = /firefox/i.test(navigator.userAgent),
-        firefoxVersion;
+	function checkColorSupport() {
+		if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+			return false;
+		}
+		var chrome = !!window.chrome,
+			firefox = /firefox/i.test(navigator.userAgent),
+			firefoxVersion;
 
-    if (firefox) {
-        var match = navigator.userAgent.match(/Firefox\/(\d+\.\d+)/);
-        if (match && match[1] && Number(match[1])) {
-            firefoxVersion = Number(match[1]);
-        }
-    }
-    return chrome || firefoxVersion >= 31.0;
-  }
+		if (firefox) {
+			var match = navigator.userAgent.match(/Firefox\/(\d+\.\d+)/);
+			if (match && match[1] && Number(match[1])) {
+				firefoxVersion = Number(match[1]);
+			}
+		}
+		return chrome || firefoxVersion >= 31.0;
+	}
 
-  var yieldColor = function() {
-    var goldenRatio = 0.618033988749895;
-    hue += goldenRatio;
-    hue = hue % 1;
-    return hue * 360;
-  };
+	var yieldColor = function() {
+		var goldenRatio = 0.618033988749895;
+		hue += goldenRatio;
+		hue = hue % 1;
+		return hue * 360;
+	};
 
-  var inNode = typeof window === 'undefined',
-      ls = !inNode && window.localStorage,
-      debugKey = ls.andlogKey || 'debug',
-      debug = ls[debugKey],
-      logger = require('andlog'),
-      bind = Function.prototype.bind,
-      hue = 0,
-      padLength = 15,
-      noop = function() {},
-      colorsSupported = ls.debugColors || checkColorSupport(),
-      bows = null,
-      debugRegex = null,
-      invertRegex = false,
-      moduleColorsMap = {};
+	var inNode = typeof window === 'undefined',
+		ls = !inNode && window.localStorage,
+		debugKey = ls.andlogKey || 'debug',
+		debug = ls[debugKey],
+		logger = require('andlog'),
+		bind = Function.prototype.bind,
+		hue = 0,
+		padLength = 15,
+		noop = function() {},
+		colorsSupported = ls.debugColors || checkColorSupport(),
+		bows = null,
+		debugRegex = null,
+		invertRegex = false,
+		moduleColorsMap = {};
 
-  if (debug && debug[0] === '!' && debug[1] === '/') {
-    invertRegex = true;
-    debug = debug.slice(1);
-  }
-  debugRegex = debug && debug[0]==='/' && new RegExp(debug.substring(1,debug.length-1));
+	if (debug && debug[0] === '!' && debug[1] === '/') {
+		invertRegex = true;
+		debug = debug.slice(1);
+	}
+	debugRegex = debug && debug[0] === '/' && new RegExp(debug.substring(1, debug.length - 1));
 
-  var logLevels = ['log', 'debug', 'warn', 'error', 'info'];
+	var logLevels = ['log', 'debug', 'warn', 'error', 'info'];
 
-  //Noop should noop
-  for (var i = 0, ii = logLevels.length; i < ii; i++) {
-      noop[ logLevels[i] ] = noop;
-  }
+	//Noop should noop
+	for (var i = 0, ii = logLevels.length; i < ii; i++) {
+		noop[logLevels[i]] = noop;
+	}
 
-  bows = function(str) {
-    var msg, colorString, logfn;
-    msg = (str.slice(0, padLength));
-    msg += Array(padLength + 3 - msg.length).join(' ') + '|';
+	var lastInvokedAt;
 
-    if (debugRegex) {
-        var matches = str.match(debugRegex);
-        if (
-            (!invertRegex && !matches) ||
-            (invertRegex && matches)
-        ) return noop;
-    }
+	diff = function() {
+		var now = Date.now();
 
-    if (!bind) return noop;
+		var diff = now - (lastInvokedAt || now);
+		lastInvokedAt = now;
 
-    var logArgs = [logger];
-    if (colorsSupported) {
-      if(!moduleColorsMap[str]){
-        moduleColorsMap[str]= yieldColor();
-      }
-      var color = moduleColorsMap[str];
-      msg = "%c" + msg;
-      colorString = "color: hsl(" + (color) + ",99%,40%); font-weight: bold";
+		return '+' + diff + 'ms';
+	};
 
-      logArgs.push(msg, colorString);
-    }else{
-      logArgs.push(msg);
-    }
+	bows = function(str) {
+		var msg, colorString, logfn;
+		msg = (str.slice(0, padLength));
+		msg += Array(padLength + 3 - msg.length).join(' ');
 
-    if(arguments.length>1){
-        var args = Array.prototype.slice.call(arguments, 1);
-        logArgs = logArgs.concat(args);
-    }
+		if (debugRegex) {
+			var matches = str.match(debugRegex);
+			if (
+				(!invertRegex && !matches) ||
+				(invertRegex && matches)
+			) return noop;
+		}
 
-    logfn = bind.apply(logger.log, logArgs);
+		if (!bind) return noop;
 
-    logLevels.forEach(function (f) {
-      logfn[f] = bind.apply(logger[f] || logfn, logArgs);
-    });
-    return logfn;
-  };
+		var logArgs = [logger];
+		if (colorsSupported) {
+			if (!moduleColorsMap[str]) {
+				moduleColorsMap[str] = yieldColor();
+			}
+			var color = moduleColorsMap[str];
+			msg = "%c" + msg;
+			colorString = "color: hsl(" + (color) + ",99%,40%); font-weight: bold";
 
-  bows.config = function(config) {
-    if (config.padLength) {
-      padLength = config.padLength;
-    }
-  };
+			logArgs.push(msg, colorString);
+		} else {
+			logArgs.push(msg);
+		}
 
-  if (typeof module !== 'undefined') {
-    module.exports = bows;
-  } else {
-    window.bows = bows;
-  }
+		if (arguments.length > 1) {
+			var args = Array.prototype.slice.call(arguments, 1);
+			logArgs = logArgs.concat(args);
+		}
+
+		wrapper = function(logfn) {
+			return function() {
+				arguments[0] = arguments[0] + diff() + '|';
+				logfn.apply(this, arguments);
+			};
+		};
+
+		logfn = bind.apply(wrapper(logger.log), logArgs);
+
+		logLevels.forEach(function(f) {
+			logfn[f] = bind.apply(wrapper(logger[f] || logfn), logArgs);
+		});
+		return logfn;
+	};
+
+	bows.config = function(config) {
+		if (config.padLength) {
+			padLength = config.padLength;
+		}
+	};
+
+	if (typeof module !== 'undefined') {
+		module.exports = bows;
+	} else {
+		window.bows = bows;
+	}
 }).call();
