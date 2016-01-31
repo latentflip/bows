@@ -86,9 +86,9 @@
       msg = "%c" + msg;
       colorString = "color: hsl(" + (color) + ",99%,40%); font-weight: bold";
 
-      logArgs.push(msg, colorString);
+      logArgs.push(null, colorString);
     }else{
-      logArgs.push(msg);
+      logArgs.push(null);
     }
 
     if(arguments.length>1){
@@ -98,17 +98,18 @@
 
     wrapper = function(logfn) {
       return function() {
-        arguments[0] = arguments[0] + diff() + '|';
-        logfn.apply(this, arguments);
+        logArgs[1] = msg + diff() + '|';
+        var args = logArgs.concat(Array.prototype.splice.call(arguments, 0));
+        return bind.apply(logfn, args);
       };
     };
 
-    logfn = bind.apply(wrapper(logger.log), logArgs);
+    logfn = logger.log;
 
     logLevels.forEach(function (f) {
-      logfn[f] = bind.apply(wrapper(logger[f] || logfn), logArgs);
+      logfn[f] = wrapper(logger[f] || logfn);
     });
-    return logfn;
+    return wrapper(logfn);
   };
 
   bows.config = function(config) {
@@ -123,4 +124,5 @@
     window.bows = bows;
   }
 }).call();
+
 
