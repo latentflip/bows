@@ -33,8 +33,13 @@
     var results = [];
 
     var getColor = function (log) {
-      return log.match(/hsl\([^)]+\)/)[0];
+      var match = log.match(/hsl\([^)]+\)/);
+      if (!match) {
+        return undefined;
+      }
+      return match[0];
     };
+
 
     var colors = actualLogs.map(getColor);
 

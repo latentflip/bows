@@ -3,6 +3,7 @@
     if (typeof window === 'undefined' || typeof navigator === 'undefined') {
       return false;
     }
+
     var chrome = !!window.chrome,
         firefox = /firefox/i.test(navigator.userAgent),
         firefoxVersion;
@@ -32,7 +33,8 @@
       hue = 0,
       padLength = 15,
       noop = function() {},
-      colorsSupported = (ls.debugColors !== "false") && checkColorSupport(),
+      // if ls.debugColors is set, use that, otherwise check for support
+      colorsSupported = ls.debugColors ? (ls.debugColors !== "false") : checkColorSupport(),
       bows = null,
       debugRegex = null,
       invertRegex = false,
