@@ -33,6 +33,7 @@
       bind = Function.prototype.bind,
       hue = 0,
       padLength = 15,
+      profile = true,
       noop = function() {},
       // if ls.debugColors is set, use that, otherwise check for support
       colorsSupported = ls.debugColors ? (ls.debugColors !== "false") : checkColorSupport(),
@@ -69,6 +70,14 @@
 
     if (!bind) return noop;
 
+    if (profile) {
+      var interval = new Date();
+      var now = (new Date()).getTime();
+      interval.toString = function() {
+        return -now + (now = new Date().getTime())
+      }
+    }
+
     var logArgs = [logger];
     if (colorsSupported) {
       if(!moduleColorsMap[str]){
@@ -78,9 +87,22 @@
       msg = "%c" + msg;
       colorString = "color: hsl(" + (color) + ",99%,40%); font-weight: bold";
 
+      if (profile) {
+        msg += " +%sms ";
+      }
+
       logArgs.push(msg, colorString);
     }else{
+
+      if (profile) {
+        msg += " +%sms ";
+      }
+
       logArgs.push(msg);
+    }
+
+    if (profile) {
+        logArgs.push(interval);
     }
 
     if(arguments.length>1){
@@ -99,6 +121,9 @@
   bows.config = function(config) {
     if (config.padLength) {
       padLength = config.padLength;
+    }
+    if (config.profile !== null) {
+      profile = config.profile;
     }
   };
 
