@@ -33,6 +33,7 @@
       bind = Function.prototype.bind,
       hue = 0,
       padLength = 15,
+      profile = true,
       noop = function() {},
       // if ls.debugColors is set, use that, otherwise check for support
       colorsSupported = ls.debugColors ? (ls.debugColors !== "false") : checkColorSupport(),
@@ -88,6 +89,22 @@
         logArgs = logArgs.concat(args);
     }
 
+    if (profile) {
+      var interval = new Date();
+      interval.__proto__ = {
+        now: (new Date().getTime()),
+        toString: function() {
+          return -now + (now = new Date.getTime())
+        }
+      };
+      if (colorsSupported) {
+        logArgs.concat('%c%s', colorString, interval)
+      } else {
+        logArgs.concat('%s', interval)
+      }
+
+    }
+
     logfn = bind.apply(logger.log, logArgs);
 
     logLevels.forEach(function (f) {
@@ -99,6 +116,9 @@
   bows.config = function(config) {
     if (config.padLength) {
       padLength = config.padLength;
+    }
+    if (config.profile) {
+      profile = config.profile;
     }
   };
 
