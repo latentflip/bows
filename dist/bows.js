@@ -72,12 +72,10 @@
 
     if (profile) {
       var interval = new Date();
-      interval.__proto__ = {
-        now: (new Date()).getTime(),
-        toString: function() {
-          return -this.now + (this.now = new Date().getTime())
-        }
-      };
+      var now = (new Date()).getTime();
+      interval.toString = function() {
+        return -now + (now = new Date().getTime())
+      }
     }
 
     var logArgs = [logger];
