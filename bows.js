@@ -69,6 +69,16 @@
 
     if (!bind) return noop;
 
+    if (profile) {
+      var interval = new Date();
+      interval.__proto__ = {
+        now: (new Date()).getTime(),
+        toString: function() {
+          return -this.now + (this.now = new Date().getTime())
+        }
+      };
+    }
+
     var logArgs = [logger];
     if (colorsSupported) {
       if(!moduleColorsMap[str]){
@@ -78,30 +88,27 @@
       msg = "%c" + msg;
       colorString = "color: hsl(" + (color) + ",99%,40%); font-weight: bold";
 
+      if (profile) {
+        msg += " +%sms ";
+      }
+
       logArgs.push(msg, colorString);
     }else{
+
+      if (profile) {
+        msg += " +%sms ";
+      }
+
       logArgs.push(msg);
+    }
+
+    if (profile) {
+        logArgs.push(interval);
     }
 
     if(arguments.length>1){
         var args = Array.prototype.slice.call(arguments, 1);
         logArgs = logArgs.concat(args);
-    }
-
-    if (profile) {
-      var interval = new Date();
-      interval.__proto__ = {
-        now: (new Date().getTime()),
-        toString: function() {
-          return -now + (now = new Date.getTime())
-        }
-      };
-      if (colorsSupported) {
-        logArgs.concat('%c%s', colorString, interval)
-      } else {
-        logArgs.concat('%s', interval)
-      }
-
     }
 
     logfn = bind.apply(logger.log, logArgs);
@@ -116,7 +123,7 @@
     if (config.padLength) {
       padLength = config.padLength;
     }
-    if (config.profile) {
+    if (config.profile !== null) {
       profile = config.profile;
     }
   };
