@@ -38,7 +38,7 @@ Otherwise, download either [bows.js](https://raw.github.com/latentflip/bows/mast
 # Browser Support
 
 * Works in all reasonable browsers
-* Supports colors in chrome, opera, firefox >= 31.0
+* Supports colors in chrome, opera, firefox >= 31.0, electron
 
 ## Usage
 - Works great in browserify and the browser.

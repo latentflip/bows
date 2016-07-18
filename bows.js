@@ -6,7 +6,8 @@
 
     var chrome = !!window.chrome,
         firefox = /firefox/i.test(navigator.userAgent),
-        firefoxVersion;
+        firefoxVersion,
+        electron = process && process.versions && process.versions.electron;
 
     if (firefox) {
         var match = navigator.userAgent.match(/Firefox\/(\d+\.\d+)/);
@@ -14,7 +15,7 @@
             firefoxVersion = Number(match[1]);
         }
     }
-    return chrome || firefoxVersion >= 31.0;
+    return chrome || firefoxVersion >= 31.0 || electron;
   }
 
   var yieldColor = function() {
