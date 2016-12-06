@@ -34,6 +34,7 @@ Otherwise, download either [bows.js](https://raw.github.com/latentflip/bows/mast
 * Can be safely used in production, as logs will be disabled for your users, but can be enabled by you with a local storage flag.
 * Greppable logs by setting `localStorage.debug = /Foo/` to only display logs for modules matching the regex to help you focus in development.
     * Invert regex to remove logs matching with: `localStorage.debug ='!/Foo/`
+* Customize the localStorage key by setting `localStorage.andlogKey` and you can use `localStorage.<anyKeyYouWant>` to set your log grepping.
 
 # Browser Support
 
