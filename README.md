@@ -1,4 +1,5 @@
 # Bows
+
 ![Colors](https://raw.github.com/latentflip/bows/master/example/cols.png)
 Safe, production happy, colourful logging - makes reading your logs _much_ easier.
 
