@@ -1,0 +1,34 @@
+<script type="text/javascript" src='./helpers/function.bind.js'></script>
+
+<script>
+    localStorage.clear();
+    localStorage.debug = true;
+</script>
+
+<script src="../dist/bows.js"></script>
+
+<script>
+  var mainLog, altLog;
+
+  bows.config({
+      padding: false
+  });
+
+  window.expectedLogs = [
+    'this-is-a-really-long-module-name-thats-more-than-50-chars  | foo',
+    'this-is-a-really-long-module-name-thats-more-than-50-chars  | bar',
+
+    'this-is-a-really-long-module-name  | baz',
+    'this-is-a-really-long-module-name  | buz'
+  ];
+
+  window.onload = function() {
+      mainLog = window.bows('this-is-a-really-long-module-name-thats-more-than-50-chars')
+      mainLog('foo');
+      mainLog('bar');
+
+      altLog = window.bows('this-is-a-really-long-module-name')
+      altLog('baz');
+      altLog('buz');
+  }
+</script>
