@@ -1,0 +1,36 @@
+<script type="text/javascript" src='./helpers/function.bind.js'></script>
+
+<script>
+    localStorage.clear();
+    localStorage.debug = true;
+</script>
+
+<script src="../dist/bows.js"></script>
+
+<script>
+  var mainLog, altLog;
+
+  bows.config({
+      separator: '//'
+  });
+
+  window.expectedLogs = [
+    'mainLog          // foo',
+    'mainLog          // bar',
+    'mainLog          // bar',
+
+    'altLog           // baz',
+    'altLog           // buz'
+  ];
+
+  window.onload = function() {
+      mainLog = window.bows('mainLog')
+      mainLog('foo');
+      mainLog('bar');
+      mainLog.log('bar');
+
+      altLog = window.bows('altLog')
+      altLog('baz');
+      altLog('buz');
+  }
+</script>

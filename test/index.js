@@ -7,7 +7,10 @@ var scripts = [
     'test/regex.html',
     'test/not-regex.html',
     'test/color-map.html',
+    'test/separator.html',
+    'test/no-separator.html',
     'test/padLength.html',
+    'test/no-padding.html',
     'test/args.html'
 ];
 

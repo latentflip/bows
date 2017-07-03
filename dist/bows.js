@@ -34,6 +34,8 @@
       logger = require('andlog'),
       bind = Function.prototype.bind,
       hue = 0,
+      padding = true,
+      separator = '|',
       padLength = 15,
       noop = function() {},
       // if ls.debugColors is set, use that, otherwise check for support
@@ -58,8 +60,13 @@
 
   bows = function(str) {
     var msg, colorString, logfn;
-    msg = (str.slice(0, padLength));
-    msg += Array(padLength + 3 - msg.length).join(' ') + '|';
+
+    if (padding) {
+      msg = (str.slice(0, padLength));
+      msg += Array(padLength + 3 - msg.length).join(' ') + separator;
+    } else {
+      msg = str + Array(3).join(' ') + separator;
+    }
 
     if (debugRegex) {
         var matches = str.match(debugRegex);
@@ -101,6 +108,16 @@
   bows.config = function(config) {
     if (config.padLength) {
       padLength = config.padLength;
+    }
+
+    if (typeof config.padding === 'boolean') {
+      padding = config.padding;
+    }
+
+    if (config.separator) {
+      separator = config.separator;
+    } else if (config.separator === false || config.separator === '') {
+      separator = ''
     }
   };
 
