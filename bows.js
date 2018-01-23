@@ -19,11 +19,11 @@
   }
 
   function checkLocalStorageSafely() {
-    var hasLocalStorage = true;
+    var hasLocalStorage = false;
     try {
       hasLocalStorage = !!window.localStorage;
     } catch (e) {
-      hasLocalStorage = false;
+      // failed: access to localStorage is denied
     }
     return hasLocalStorage;
   }
