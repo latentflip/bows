@@ -18,6 +18,16 @@
     return chrome || firefoxVersion >= 31.0 || electron;
   }
 
+  function checkLocalStorageSafely() {
+    var hasLocalStorage = true;
+    try {
+      hasLocalStorage = !!window.localStorage;
+    } catch (e) {
+      hasLocalStorage = false;
+    }
+    return hasLocalStorage;
+  }
+
   var yieldColor = function() {
     var goldenRatio = 0.618033988749895;
     hue += goldenRatio;
@@ -26,7 +36,7 @@
   };
 
   var inNode = typeof window === 'undefined',
-      ls = !inNode && window.localStorage,
+      ls = !inNode && checkLocalStorageSafely(),
       debugKey = ls.andlogKey || 'debug',
       debug = ls[debugKey],
       logger = require('andlog'),
