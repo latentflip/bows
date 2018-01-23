@@ -18,14 +18,14 @@
     return chrome || firefoxVersion >= 31.0 || electron;
   }
 
-  function checkLocalStorageSafely() {
-    var hasLocalStorage = false;
+  function getLocalStorageSafely() {
+    var localStorage;
     try {
-      hasLocalStorage = !!window.localStorage;
+      localStorage = window.localStorage;
     } catch (e) {
       // failed: access to localStorage is denied
     }
-    return hasLocalStorage;
+    return localStorage;
   }
 
   var yieldColor = function() {
@@ -36,7 +36,7 @@
   };
 
   var inNode = typeof window === 'undefined',
-      ls = !inNode && checkLocalStorageSafely(),
+      ls = !inNode && getLocalStorageSafely(),
       debugKey = ls.andlogKey || 'debug',
       debug = ls[debugKey],
       logger = require('andlog'),
