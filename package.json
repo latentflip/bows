@@ -12,7 +12,7 @@
     "publish-major": "npm run preversion && npm version major && git push origin master --tags && npm publish"
   },
   "dependencies": {
-    "andlog": "git+https://github.com/wearelucid/andlog.git#6241f5a43d1f98d24cb9ca8137fc172ad188342e"
+    "andlog": "1.0.1"
   },
   "devDependencies": {
     "browserify": "^5.10.0",
