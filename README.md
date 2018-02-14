@@ -72,6 +72,13 @@ Otherwise, download either [bows.js](https://raw.github.com/latentflip/bows/mast
   localStorage.debug = true
   //Configure the max length of module names (optional)
   bows.config({ padLength: 10 })
+  //Configure the color for a particular module (optional)
+  bows.config({
+    moduleColorsMap: {
+      'what-ever-module-name1': '#FC812E',
+      'what-ever-module-name2': 'rgba(45,120,155,0.9)'
+    }
+  })
 
   var logger1 = bows('Module 1')
   var logger2 = bows('Module 2')
@@ -128,4 +135,3 @@ npm install #install dependencies
 npm test
 npm run build.js #build dist/bows.js and dist/bows.min.js, also done by `npm test`
 ```
-

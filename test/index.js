@@ -11,7 +11,8 @@ var scripts = [
     'test/no-separator.html',
     'test/padLength.html',
     'test/no-padding.html',
-    'test/args.html'
+    'test/args.html',
+    'test/custom-color.html',
 ];
 
 function runNextScript () {
