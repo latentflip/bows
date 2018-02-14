@@ -18,11 +18,11 @@
     return chrome || firefoxVersion >= 31.0 || electron;
   }
 
-  var yieldColor = function() {
+  var yieldColorString = function() {
     var goldenRatio = 0.618033988749895;
     hue += goldenRatio;
     hue = hue % 1;
-    return hue * 360;
+    return "hsl(" + (hue * 360) + ",99%,40%)"
   };
 
   var inNode = typeof window === 'undefined',
@@ -79,11 +79,11 @@
     var logArgs = [logger];
     if (colorsSupported) {
       if(!moduleColorsMap[str]){
-        moduleColorsMap[str]= yieldColor();
+        moduleColorsMap[str] = yieldColorString();
       }
       var color = moduleColorsMap[str];
       msg = "%c" + msg;
-      colorString = "color: hsl(" + (color) + ",99%,40%); font-weight: bold";
+      colorString = "color: " + color + "; font-weight: bold";
 
       logArgs.push(msg, colorString);
     }else{
@@ -116,6 +116,12 @@
       separator = config.separator;
     } else if (config.separator === false || config.separator === '') {
       separator = ''
+    }
+
+    if (config.moduleColorsMap) {
+      if (typeof config.moduleColorsMap === 'object') {
+        moduleColorsMap = config.moduleColorsMap;
+      }
     }
   };
 
