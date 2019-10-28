@@ -60,6 +60,10 @@ andlog@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/andlog/-/andlog-1.0.1.tgz#afc6512b6e809f5bba63c6646d8685ccead19f11"
 
+andlog@wearelucid/andlog#f289e95bd74948c9e085c0c0650e70f37cf968da:
+  version "1.0.1"
+  resolved "https://codeload.github.com/wearelucid/andlog/tar.gz/f289e95bd74948c9e085c0c0650e70f37cf968da"
+
 ansi-regex@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-2.1.1.tgz#c3b33ab5ee360d86e0e628f0468ae7ef27d654df"
