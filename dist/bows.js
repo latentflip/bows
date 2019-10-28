@@ -40,7 +40,7 @@
   var inNode = typeof window === 'undefined',
       ls = !inNode && getLocalStorageSafely(),
       debugKey = ls && ls.andlogKey ? ls.andlogKey : 'debug',
-      debug = ls[debugKey],
+      debug = ls ? ls[debugKey] : false,
       logger = require('andlog'),
       bind = Function.prototype.bind,
       hue = 0,
@@ -49,7 +49,7 @@
       padLength = 15,
       noop = function() {},
       // if ls.debugColors is set, use that, otherwise check for support
-      colorsSupported = ls.debugColors ? (ls.debugColors !== "false") : checkColorSupport(),
+      colorsSupported = ls && ls.debugColors ? (ls.debugColors !== "false") : checkColorSupport(),
       bows = null,
       debugRegex = null,
       invertRegex = false,
