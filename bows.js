@@ -38,7 +38,7 @@
   var inNode = typeof window === 'undefined',
       ls = !inNode && getLocalStorageSafely(),
       debugKey = ls && ls.andlogKey ? ls.andlogKey : 'debug',
-      debug = ls ? ls[debugKey] : false,
+      debug = ls && ls[debugKey] ? ls[debugKey] : false,
       logger = require('andlog'),
       bind = Function.prototype.bind,
       hue = 0,
