@@ -20,6 +20,16 @@
     return chrome || firefoxVersion >= 31.0 || electron;
   }
 
+  function getLocalStorageSafely() {
+    var localStorage;
+    try {
+      localStorage = window.localStorage;
+    } catch (e) {
+      // failed: access to localStorage is denied
+    }
+    return localStorage;
+  }
+
   var yieldColor = function() {
     var goldenRatio = 0.618033988749895;
     hue += goldenRatio;
@@ -28,9 +38,9 @@
   };
 
   var inNode = typeof window === 'undefined',
-      ls = !inNode && window.localStorage,
-      debugKey = ls.andlogKey || 'debug',
-      debug = ls[debugKey],
+      ls = !inNode && getLocalStorageSafely(),
+      debugKey = ls && ls.andlogKey ? ls.andlogKey : 'debug',
+      debug = ls && ls[debugKey] ? ls[debugKey] : false,
       logger = require('andlog'),
       bind = Function.prototype.bind,
       hue = 0,
@@ -39,7 +49,7 @@
       padLength = 15,
       noop = function() {},
       // if ls.debugColors is set, use that, otherwise check for support
-      colorsSupported = ls.debugColors ? (ls.debugColors !== "false") : checkColorSupport(),
+      colorsSupported = ls && ls.debugColors ? (ls.debugColors !== "false") : checkColorSupport(),
       bows = null,
       debugRegex = null,
       invertRegex = false,
@@ -132,11 +142,21 @@
 },{"_process":3,"andlog":2}],2:[function(require,module,exports){
 // follow @HenrikJoreteg and @andyet if you like this ;)
 (function () {
+    function getLocalStorageSafely() {
+        var localStorage;
+        try {
+            localStorage = window.localStorage;
+        } catch (e) {
+            // failed: access to localStorage is denied
+        }
+        return localStorage;
+    }
+
     var inNode = typeof window === 'undefined',
-        ls = !inNode && window.localStorage,
+        ls = !inNode && getLocalStorageSafely(),
         out = {};
 
-    if (inNode) {
+    if (inNode || !ls) {
         module.exports = console;
         return;
     }
