@@ -14,19 +14,18 @@ var scripts = [
     'test/args.html'
 ];
 
-function runNextScript () {
+async function runNextScript () {
     var script = scripts.shift();
 
     if (!script) {
         console.log('All tests passed');
-        phantom.exit(0);
         return;
     }
 
     console.log('Running', script);
     runTestPage(script, function (exitCode) {
         if (exitCode > 0) {
-            return phantom.exit(exitCode);
+          throw "FAILED"
         }
         runNextScript();
     });
