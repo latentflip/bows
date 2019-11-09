@@ -67,6 +67,9 @@
   }
 
   bows = function(str) {
+    // If localStorage is not available just don't log
+    if (!ls) return noop;
+
     var msg, colorString, logfn;
 
     if (padding) {
