@@ -14,21 +14,27 @@ var scripts = [
     'test/args.html'
 ];
 
-async function runNextScript () {
-    var script = scripts.shift();
+async function runAllScripts () {
+    const results = {passed: [], failed: []}
 
-    if (!script) {
-        console.log('All tests passed');
-        return;
+    for (const script of scripts) {
+        console.log(`\n--- Running ${script} ---`)
+        const passed = await runTestPage(script)
+        if (passed) {
+            results.passed.push(script)
+        } else {
+            results.failed.push(script)
+        }
     }
 
-    console.log('Running', script);
-    runTestPage(script, function (exitCode) {
-        if (exitCode > 0) {
-          throw "FAILED"
-        }
-        runNextScript();
-    });
+    if (results.failed.length === 0) {
+        console.log('All test suites passed');
+    } else {
+        console.log(`${results.failed.length} of ${results.failed.length + results.passed.length} suites failed.`)
+    }
+
+    const exitCode = results.failed.length === 0 ? 0 : 1
+    process.exit(exitCode)
 }
 
-runNextScript();
+runAllScripts()

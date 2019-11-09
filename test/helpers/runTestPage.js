@@ -1,28 +1,31 @@
 var puppeteer = require('puppeteer');
 var Path = require('path')
 
-module.exports = function runTestPage(path, done) {
-  doIt(path, done)
-}
-
-async function doIt(path, done) {
+module.exports = async function runTestPage(path) {
     var exit = 0;
 
     var actualLogs = [];
+    var pageErrors = [];
 
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
+
     page.on('console', msg => {
       actualLogs.push(msg.text())
     })
 
+    page.on('pageerror', (error) => {
+      console.log('Exception: ', error.message);
+      pageErrors.push(error.message)
+    })
+
     await page.goto(`file:${Path.join(__dirname, '..', '..', path)}`)
-    var customTests = page.evaluate(function () {
+    var customTests = await page.evaluate(function () {
         return !!window.customTests;
     });
 
     if (customTests) {
-        var customResults = page.evaluate(function (l) {
+        var customResults = await page.evaluate(function (l) {
             return window.customTests(l);
         }, actualLogs);
 
@@ -35,18 +38,17 @@ async function doIt(path, done) {
             }
         });
 
-        done(exit);
-        return;
+        return exit === 0 && (pageErrors.length === 0);
     }
+
+
+    var expectedLogs = await page.evaluate(function () {
+        return window.expectedLogs;
+    });
 
     await browser.close()
 
     var exit = 0;
-
-
-    var expectedLogs = page.evaluate(function () {
-        return window.expectedLogs;
-    });
 
     expectedLogs.forEach(function (expectedLog, i) {
         if (expectedLog !== actualLogs[i]) {
@@ -73,13 +75,5 @@ async function doIt(path, done) {
         exit = 1;
     }
 
-
-    if (exit === 0) {
-        console.log(path, ': all tests passed');
-    } else {
-        console.log(path, ': fail');
-    }
-    console.log('');
-
-    done(exit);
+    return exit === 0 && (pageErrors.length === 0);
 }
