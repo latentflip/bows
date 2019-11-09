@@ -1,8 +1,8 @@
-<script type="text/javascript" src='./helpers/function.bind.js'></script>
+<script type="text/javascript" src="./helpers/function.bind.js"></script>
 
 <script>
-    localStorage.clear();
-    localStorage.debug = /mainLog/;
+  localStorage.clear();
+  localStorage.debug = /mainLog/;
 </script>
 
 <script src="../dist/bows.js"></script>
@@ -15,19 +15,19 @@
     'mainLog          | bar',
 
     'mainLog          | more',
-    'mainLog          | logs',
+    'mainLog          | logs'
   ];
 
   window.onload = function() {
-      mainLog = window.bows('mainLog')
-      mainLog('foo');
-      mainLog('bar');
+    mainLog = window.bows('mainLog');
+    mainLog('foo');
+    mainLog('bar');
 
-      altLog = window.bows('altLog')
-      altLog('baz');
-      altLog('buz');
+    altLog = window.bows('altLog');
+    altLog('baz');
+    altLog('buz');
 
-      mainLog('more');
-      mainLog('logs');
-  }
+    mainLog('more');
+    mainLog('logs');
+  };
 </script>

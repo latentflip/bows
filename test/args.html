@@ -1,4 +1,4 @@
-<script type="text/javascript" src='./helpers/function.bind.js'></script>
+<script type="text/javascript" src="./helpers/function.bind.js"></script>
 
 <script>
   localStorage.debug = true;
@@ -11,17 +11,20 @@
 
   window.expectedLogs = [
     'noargs           | foo',
-    'onearg           | I\'m the one! bar',
-    'twoargs          | I\'d rather be alone. - No chance, buster! baz',
+    "onearg           | I'm the one! bar",
+    "twoargs          | I'd rather be alone. - No chance, buster! baz"
   ];
 
-
-  window.onload = function () {
+  window.onload = function() {
     //Okay this is gonna get weird, because my test runner is funky
 
     noargs = window.bows('noargs');
-    onearg = window.bows('onearg', 'I\'m the one!');
-    twoargs = window.bows('twoargs', 'I\'d rather be alone.', '- No chance, buster!');
+    onearg = window.bows('onearg', "I'm the one!");
+    twoargs = window.bows(
+      'twoargs',
+      "I'd rather be alone.",
+      '- No chance, buster!'
+    );
 
     noargs('foo');
     onearg('bar');
