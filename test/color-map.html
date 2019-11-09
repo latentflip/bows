@@ -1,4 +1,4 @@
-<script type="text/javascript" src='./helpers/function.bind.js'></script>
+<script type="text/javascript" src="./helpers/function.bind.js"></script>
 
 <script>
   localStorage.debug = true;
@@ -13,11 +13,10 @@
   window.expectedLogs = [
     'mainLog          | foo',
     'mainLog          | bar',
-    'altLog           | baz',
+    'altLog           | baz'
   ];
 
-
-  window.onload = function () {
+  window.onload = function() {
     //Okay this is gonna get weird, because my test runner is funky
 
     mainLog = window.bows('mainLog');
@@ -27,12 +26,12 @@
     mainLog('foo');
     mainLog2('foo');
     altLog('baz');
-  }
+  };
 
-  window.customTests = function (actualLogs) {
+  window.customTests = function(actualLogs) {
     var results = [];
 
-    var getColor = function (log) {
+    var getColor = function(log) {
       var match = log.match(/hsl\([^)]+\)/);
       if (!match) {
         return undefined;
@@ -40,13 +39,21 @@
       return match[0];
     };
 
-
     var colors = actualLogs.map(getColor);
 
-    results.push([ !!(colors[0] && colors[1] && colors[2]), "Loggers have colors" ]);
-    results.push([ colors[0] === colors[1], "Separate loggers with same module string have same color"]);
-    results.push([ colors[1] !== colors[2], "Separate loggers have different colors"]);
+    results.push([
+      !!(colors[0] && colors[1] && colors[2]),
+      'Loggers have colors'
+    ]);
+    results.push([
+      colors[0] === colors[1],
+      'Separate loggers with same module string have same color'
+    ]);
+    results.push([
+      colors[1] !== colors[2],
+      'Separate loggers have different colors'
+    ]);
 
     return results;
-  }
+  };
 </script>

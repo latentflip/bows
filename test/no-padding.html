@@ -1,8 +1,8 @@
-<script type="text/javascript" src='./helpers/function.bind.js'></script>
+<script type="text/javascript" src="./helpers/function.bind.js"></script>
 
 <script>
-    localStorage.clear();
-    localStorage.debug = true;
+  localStorage.clear();
+  localStorage.debug = true;
 </script>
 
 <script src="../dist/bows.js"></script>
@@ -11,7 +11,7 @@
   var mainLog, altLog;
 
   bows.config({
-      padding: false
+    padding: false
   });
 
   window.expectedLogs = [
@@ -23,12 +23,14 @@
   ];
 
   window.onload = function() {
-      mainLog = window.bows('this-is-a-really-long-module-name-thats-more-than-50-chars')
-      mainLog('foo');
-      mainLog('bar');
+    mainLog = window.bows(
+      'this-is-a-really-long-module-name-thats-more-than-50-chars'
+    );
+    mainLog('foo');
+    mainLog('bar');
 
-      altLog = window.bows('this-is-a-really-long-module-name')
-      altLog('baz');
-      altLog('buz');
-  }
+    altLog = window.bows('this-is-a-really-long-module-name');
+    altLog('baz');
+    altLog('buz');
+  };
 </script>

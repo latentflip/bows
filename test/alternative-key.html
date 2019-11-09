@@ -1,16 +1,16 @@
-<script type="text/javascript" src='./helpers/function.bind.js'></script>
+<script type="text/javascript" src="./helpers/function.bind.js"></script>
 
 <script>
-    localStorage.removeItem('debug');
-    localStorage.andlogKey = 'bacon';
-    localStorage.bacon = true;
+  localStorage.removeItem('debug');
+  localStorage.andlogKey = 'bacon';
+  localStorage.bacon = true;
 </script>
 
 <script src="../dist/bows.js"></script>
 
 <script type="text/javascript">
-  var mainLog, altLog  
-  
+  var mainLog, altLog;
+
   window.expectedLogs = [
     'mainLog          | foo',
     'mainLog          | bar',
@@ -20,13 +20,12 @@
   ];
 
   window.onload = function() {
-      mainLog = window.bows('mainLog')
-      mainLog('foo');
-      mainLog('bar');
+    mainLog = window.bows('mainLog');
+    mainLog('foo');
+    mainLog('bar');
 
-      altLog = window.bows('altLog')
-      altLog('baz');
-      altLog('buz');
-  }
+    altLog = window.bows('altLog');
+    altLog('baz');
+    altLog('buz');
+  };
 </script>
-

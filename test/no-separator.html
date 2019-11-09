@@ -1,9 +1,8 @@
-
-<script type="text/javascript" src='./helpers/function.bind.js'></script>
+<script type="text/javascript" src="./helpers/function.bind.js"></script>
 
 <script>
-    localStorage.clear();
-    localStorage.debug = true;
+  localStorage.clear();
+  localStorage.debug = true;
 </script>
 
 <script src="../dist/bows.js"></script>
@@ -12,7 +11,7 @@
   var mainLog, altLog;
 
   bows.config({
-      separator: false
+    separator: false
   });
 
   window.expectedLogs = [
@@ -25,13 +24,13 @@
   ];
 
   window.onload = function() {
-      mainLog = window.bows('mainLog')
-      mainLog('foo');
-      mainLog('bar');
-      mainLog.log('bar');
+    mainLog = window.bows('mainLog');
+    mainLog('foo');
+    mainLog('bar');
+    mainLog.log('bar');
 
-      altLog = window.bows('altLog')
-      altLog('baz');
-      altLog('buz');
-  }
+    altLog = window.bows('altLog');
+    altLog('baz');
+    altLog('buz');
+  };
 </script>
