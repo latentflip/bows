@@ -3,6 +3,7 @@ var runTestPage = require('./helpers/runTestPage');
 var scripts = [
     'test/enabled.html',
     'test/disabled.html',
+    'test/no-local-storage.html',
     'test/alternative-key.html',
     'test/regex.html',
     'test/not-regex.html',
