@@ -3,6 +3,7 @@ var runTestPage = require('./helpers/runTestPage');
 var scripts = [
     'test/enabled.html',
     'test/disabled.html',
+    'test/no-local-storage.html',
     'test/alternative-key.html',
     'test/regex.html',
     'test/not-regex.html',
@@ -14,22 +15,27 @@ var scripts = [
     'test/args.html'
 ];
 
-function runNextScript () {
-    var script = scripts.shift();
+async function runAllScripts () {
+    const results = {passed: [], failed: []}
 
-    if (!script) {
-        console.log('All tests passed');
-        phantom.exit(0);
-        return;
+    for (const script of scripts) {
+        console.log(`\n--- Running ${script} ---`)
+        const passed = await runTestPage(script)
+        if (passed) {
+            results.passed.push(script)
+        } else {
+            results.failed.push(script)
+        }
     }
 
-    console.log('Running', script);
-    runTestPage(script, function (exitCode) {
-        if (exitCode > 0) {
-            return phantom.exit(exitCode);
-        }
-        runNextScript();
-    });
+    if (results.failed.length === 0) {
+        console.log('All test suites passed');
+    } else {
+        console.log(`${results.failed.length} of ${results.failed.length + results.passed.length} suites failed.`)
+    }
+
+    const exitCode = results.failed.length === 0 ? 0 : 1
+    process.exit(exitCode)
 }
 
-runNextScript();
+runAllScripts()
