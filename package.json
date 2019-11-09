@@ -5,6 +5,7 @@
   "main": "bows.js",
   "scripts": {
     "build": "node build.js",
+    "prettier": "prettier --single-quote --write {.,test}/**/*.js *.js test/**/*.html",
     "test": "node build.js && node test/index.js",
     "preversion": "git checkout master && git pull && npm ls",
     "publish-patch": "npm run preversion && npm version patch && git push origin master --tags && npm publish",
@@ -16,6 +17,7 @@
   },
   "devDependencies": {
     "browserify": "^5.10.0",
+    "prettier": "1.19.0",
     "puppeteer": "^2.0.0",
     "uglify-js": "^2.3.6"
   },
