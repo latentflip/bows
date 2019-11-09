@@ -1,15 +1,11 @@
-<script type="text/javascript" src='./helpers/function.bind.js'></script>
+<script type="text/javascript" src="./helpers/function.bind.js"></script>
 
 <script>
-  Object.defineProperty(
-    window,
-    "localStorage",
-    {
-      get: () => {
-        throw new Error("Access is denied for localStorage")
-      }
+  Object.defineProperty(window, 'localStorage', {
+    get: () => {
+      throw new Error('Access is denied for localStorage');
     }
-  )
+  });
 </script>
 
 <script src="../dist/bows.js"></script>
@@ -20,13 +16,13 @@
   window.expectedLogs = []
 
   window.onload = function() {
-      mainLog = window.bows('mainLog')
-      mainLog('foo');
-      mainLog('bar');
-      mainLog.log('bar');
+    mainLog = window.bows('mainLog');
+    mainLog('foo');
+    mainLog('bar');
+    mainLog.log('bar');
 
-      altLog = window.bows('altLog')
-      altLog('baz');
-      altLog('buz');
-  }
+    altLog = window.bows('altLog');
+    altLog('baz');
+    altLog('buz');
+  };
 </script>
