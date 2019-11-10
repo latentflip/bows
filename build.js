@@ -1,6 +1,11 @@
 var browserify = require('browserify'),
   fs = require('fs'),
-  uglify = require('uglify-js');
+  uglify = require('uglify-js'),
+  outdir = './dist';
+
+if (!fs.existsSync(outdir)) {
+  fs.mkdirSync(outdir);
+}
 
 var b = browserify({ standalone: 'bows' });
 b.add('./bows.js');
