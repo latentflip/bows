@@ -1,6 +1,6 @@
 {
   "name": "bows",
-  "version": "1.7.2-rc2",
+  "version": "1.7.2",
   "description": "Rainbowed console logs for chrome, opera and firefox in development.",
   "main": "bows.js",
   "scripts": {
